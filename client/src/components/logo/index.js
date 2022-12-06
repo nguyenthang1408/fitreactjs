@@ -21,7 +21,7 @@ function Logo() {
         <div className={cx('header-logo')}>
             <div className={cx('header-title')}>
                 <h1>
-                    Vn cable <br /> {t('vn-cable')}
+                    Vn cable thang <br /> {t('vn-cable')}
                 </h1>
             </div>
             <div className={cx('header-user')}>
