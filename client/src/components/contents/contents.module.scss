@@ -1,0 +1,16 @@
+.titles {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 2px;
+    margin-left: 2rem;
+}
+
+@media (max-width: 768px){
+    .titles {
+       display: block;
+       width: 90%;
+    }
+}

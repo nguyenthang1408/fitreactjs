@@ -1,0 +1,16 @@
+.header-account {
+    position: relative;
+    top: 30px;
+    width: 90%;
+    border-radius: 10px;
+    height: 80px;
+    margin: 0px auto;
+    background-color: #e43170;
+    display: flex;
+    align-items: center;
+
+    & h3 {
+        margin-left: 20px;
+        color: white;
+    }
+}

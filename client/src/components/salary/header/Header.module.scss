@@ -1,0 +1,16 @@
+.header-aec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    & .header-aec-center span {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    & .add-aec {
+        cursor: pointer;
+    }
+}

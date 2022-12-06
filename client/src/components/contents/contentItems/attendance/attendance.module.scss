@@ -1,0 +1,16 @@
+.attendance {
+    display: flex;
+    flex-wrap: wrap;
+    height: 48%;
+    width: 100%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    position: absolute;
+}
+
+@media (min-width: 1500px) and (max-width:1600px)
+{
+    .attendance { 
+        height: 46%;
+    }
+}

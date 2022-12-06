@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: calc(100%);
+    height: 100%;
+    max-width: 1920px;
+    max-height: 100vh;
+
+
+
+
+    .container-progress {
+        display: block;
+        width: 100%;
+        height: 49%;
+    }
+
+
+    .container-attendance {
+        display: flex;
+        width: 100%;
+        height: auto;
+       
+    }
+}
+
+@media (min-width: 1500px) and (max-width:1600px)
+{
+    .container {
+        height: 98%;
+        width: 98%;
+    }
+
+    .container {
+        display: block;
+    }
+}
+
+@media (max-width: 768px){
+    .container-progress {
+        display: block;
+        width: 100%;
+        height: 49%;
+    }
+
+
+    .container-attendance {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+

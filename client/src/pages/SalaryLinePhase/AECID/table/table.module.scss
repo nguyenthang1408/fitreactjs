@@ -1,0 +1,105 @@
+.table {
+    width: 100%;
+    height: 100%;
+
+    & thead {
+        width: 100%;
+        height: 50px;
+        border: 1px solid black;
+
+        & tr th {
+            height: 50px;
+            width: 5%;
+            text-align: center;
+            border-right: 1px solid black;
+        }
+    }
+
+    & tbody {
+        width: 100%;
+        & td {
+            height: 50px;
+            margin-top: 0px;
+            text-align: center;
+        }
+    }
+}
+
+.finish {
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+table tr th {
+    border: 2px solid white;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    vertical-align: middle;
+    height: 80px;
+    font-size: 20px;
+}
+
+table tr td {
+    text-align: center;
+    vertical-align: middle;
+    border: 3px solid #d5e0e0;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+table tr th:nth-child(1) {
+    width: 5%;
+    background-color: #d5e0e0;
+}
+table tr th:nth-child(2) {
+    background-color: #247070;
+    width: 5%;
+}
+table tr th:nth-child(3) {
+    background-color: #ff9378;
+    width: 5%;
+}
+table tr th:nth-child(4) {
+    background-color: #edc045;
+    width: 5%;
+}
+table tr th:nth-child(5) {
+    background-color: #dafa28;
+    width: 5%;
+}
+table tr th:nth-child(6) {
+    background-color: #41f055;
+    width: 5%;
+}
+table tr th:nth-child(7) {
+    background-color: #4fcdf0;
+    width: 5%;
+}
+table tr th:nth-child(8) {
+    background-color: #7868ed;
+    width: 5%;
+}
+table tr th:nth-child(9) {
+    background-color: #d91c97;
+    width: 5%;
+}
+table tr th:nth-child(10) {
+    background-color: #eb6ebb;
+    width: 5%;
+}
+
+table tr th:nth-child(11) {
+    background-color: #ff9900;
+    width: 5%;
+}
+
+table tr th:nth-child(12) {
+    background-color: #eb090d;
+    width: 5%;
+}

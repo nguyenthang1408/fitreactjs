@@ -1,0 +1,24 @@
+// .pie-animate {
+//     width: 102px;
+//     height: 102px;
+// }
+.pie-animate-chart {
+    vertical-align: none;
+}
+
+.xs {
+    width: 102px;
+    height: 102px;
+}
+.lg {
+    width: 250px;
+    height: 250px;
+}
+
+@media (max-width: 768px)
+{
+    .lg {
+        width: 200px;
+        height: 200px;
+    }
+}

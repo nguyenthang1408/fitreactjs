@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    height: 99%;
+    max-height: 1080px;
+    width: 100%;
+    max-width: 1900px;
+}
+.content {
+    flex: 1;
+    background-color: #c7deff;
+}
+
+@media (max-width: 768px){
+    .container {
+        display: block;
+    }
+    .content {
+        display: block;
+        height: 100%;
+        background-color: white;
+    }
+
+}

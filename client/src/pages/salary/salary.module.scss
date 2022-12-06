@@ -1,0 +1,21 @@
+.salaryGlobal {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .link-salary {
+        text-decoration: none;
+    }
+
+    & h1 {
+        margin: 150px;
+        font-size: 100px;
+
+        &:hover {
+            color: red;
+            cursor: pointer;
+        }
+    }
+}

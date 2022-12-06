@@ -1,0 +1,34 @@
+.wrapper-language {
+    max-height: 1080px;
+    max-width: 1920px;
+    height: 100%;
+    width: 101.2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../essets/images/ban-lam-viec.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.select-language {
+    margin-top: 20px;
+    width: 300px;
+    height: 60px;
+    font-size: 30px;
+    border: 2px solid #00ff00;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 30px;
+    color: red;
+}
+
+@media (max-width: 768px){
+    h2 {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+}
