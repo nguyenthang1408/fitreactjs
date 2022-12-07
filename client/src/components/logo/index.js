@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import config from '../../config';
 import { useStore } from '../../store';
 import { t } from 'i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBars,
-} from '@fortawesome/free-solid-svg-icons';
+
 
 const cx = classNames.bind(styles);
 
@@ -17,11 +14,10 @@ function Logo() {
 
     return (
         <>
-        <span className={cx('icon-mobile')}><FontAwesomeIcon icon={faBars} size="2x" /></span>
         <div className={cx('header-logo')}>
             <div className={cx('header-title')}>
                 <h1>
-                    Vn cable thang <br /> {t('vn-cable')}
+                    Vn cable <br /> {t('vn-cable')}
                 </h1>
             </div>
             <div className={cx('header-user')}>

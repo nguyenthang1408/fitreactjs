@@ -167,13 +167,38 @@ table tr th {
         margin-top: 10px;
     }
     .title-main-hide{
-        width: 100%;
+        width: 90%;
+        margin-left: 4%;
+        margin-top: 100px;
+
+        & .title-main-hide-chart{
+            position: absolute;
+            margin-top: -80px;
+        }
+    }
+    .title-main-show {
+        border-radius: 20px;
+      
+    }
+    .title-title:nth-child(1) {
         margin-top: 100px;
     }
     .title-title{
         width: 100%;
+        height: 50rem;
+        margin-top: 20px;
+
+        & .title-header{
+            height: 106px;
+            margin-top: 0px;
+            border-radius: 20px;
+        }
+
         h1{
-            width: 100%
+            margin-top: 0px;
+            height: 100%;
+            width: 100%;
+            box-shadow: -7px -7px 15px rgb(255, 255, 255), 7px 7px 15px rgba(121, 130, 160, 0.747);
         }
     }
 
