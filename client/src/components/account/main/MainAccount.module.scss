@@ -19,11 +19,16 @@
     }
 }
 
+.table {
+    width: 100%;
+}
+
 .table tr th {
     border: 1px solid #333;
     height: 80px;
     font-size: 20px;
     text-align: center;
+    width: 100%;
 }
 .table tr th:nth-child(1) {
     background: #d5e0e0;
@@ -59,4 +64,52 @@
     height: 80px;
     border-top: none;
     text-align: center;
+}
+
+.table .table-th-1{
+    width: 10%;
+}
+
+.table .table-th-2{
+    width: 30%;
+}
+
+.table .table-th-3{
+    width: 30%;
+}
+
+.table .table-th-4{
+    width: 30%;
+}
+
+
+.table .table-td-1{
+    width: 10%;
+}
+
+.table .table-td-2{
+    width: 30%;
+}
+
+.table .table-td-3{
+    width: 30%;
+}
+
+.table .table-td-4{
+    width: 30%;
+}
+
+
+@media (max-width: 768px){
+
+    .main-account{
+        width: 100%;
+        height: 100%;
+
+        .main-account-select
+        {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }

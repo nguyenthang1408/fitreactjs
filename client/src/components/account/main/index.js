@@ -53,7 +53,7 @@ function MainAccount() {
     };
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/user?search=${search}&page=${pageNumber}`).then((res) => {
+        Axios.get(`http://localhost:4000/user?search=${search}&page=${pageNumber}`).then((res) => {
             setListUser(res.data.result);
             setTotalPage(res.data.totalPage);
         });
@@ -73,16 +73,16 @@ function MainAccount() {
                 <table className={cx('table')}>
                     <thead>
                         <tr>
-                            <th scope="col" style={{ width: '10vw' }}>
+                            <th className={cx('table-th-1')} style={{ }}>
                                 #
                             </th>
-                            <th scope="col" style={{ width: '25vw' }}>
+                            <th className={cx('table-th-2')} style={{ }}>
                                 {t('account')}
                             </th>
-                            <th scope="col" style={{ width: '25vw' }}>
+                            <th className={cx('table-th-3')} style={{ }}>
                                 {t('password')}
                             </th>
-                            <th scope="col" style={{ width: '25vw' }}>
+                            <th className={cx('table-th-4')} style={{ }}>
                                 #
                             </th>
                         </tr>
@@ -91,12 +91,12 @@ function MainAccount() {
                         {listUser.map((value, key) => {
                             return (
                                 <tr key={key}>
-                                    <td style={{ width: '10vw' }}>
+                                    <td className={cx('table-td-1')} style={{ }}>
                                         <FontAwesomeIcon icon={faUser} /> {value.id}
                                     </td>
-                                    <td style={{ width: '25vw' }}>{value.username}</td>
-                                    <td style={{ width: '25vw' }}>***</td>
-                                    <td style={{ width: '25vw' }}>
+                                    <td className={cx('table-td-2')} style={{ }}>{value.username}</td>
+                                    <td className={cx('table-td-3')} style={{ }}>***</td>
+                                    <td className={cx('table-td-4')} style={{ }}>
                                         <div className={cx('table-td-option')}>
                                             <Button title={t('add')} small primary onClick={handleAdd} />
 

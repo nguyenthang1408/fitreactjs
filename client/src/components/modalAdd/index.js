@@ -40,7 +40,7 @@ export default function ModalAdd({ setShow }) {
     };
 
     const Add = () => {
-        Axios.post('http://localhost:3001/machine/add', {
+        Axios.post('http://localhost:4000/machine/add', {
             name: nameMachine,
             progress: '0',
             startDay: startDay,
@@ -60,7 +60,7 @@ export default function ModalAdd({ setShow }) {
     };
 
     const AddLine = () => {
-        Axios.post('http://localhost:3001/machine/add', {
+        Axios.post('http://localhost:4000/machine/add', {
             name: nameMachine,
             progress: '0',
             startDay: startDay,

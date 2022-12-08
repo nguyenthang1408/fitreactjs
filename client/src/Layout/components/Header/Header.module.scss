@@ -150,12 +150,15 @@
 
         & span:nth-child(1){
             padding: 10px;
-            color: white;
             font-weight: 600;
             font-size: 40px;
             background-color: transparent;
 
-           
+           a{
+            text-decoration: none;
+            background-color: transparent;
+            color: white;
+           }
 
             
         }

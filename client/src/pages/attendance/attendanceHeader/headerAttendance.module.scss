@@ -137,3 +137,45 @@
         }
     }
 }
+
+
+@media (max-width: 768px){
+    .Wrapper-header {
+        margin-top: 140px;
+        margin-left: 0px;
+    }
+
+    .header-content{
+        width: 100%;
+    }
+
+    .header-content-left{
+        width: 32%;
+
+        & input{
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+
+    .header-content-center{
+        width: 32%;
+
+        & input{
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+
+    .header-content-right{
+        width: 32%;
+
+        & input{
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+}

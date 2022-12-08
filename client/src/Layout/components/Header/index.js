@@ -33,7 +33,7 @@ function Header() {
     return (
         <>
             <div className={cx('header-logo-mobile')}>
-                    <span>Foxconn</span>
+                    <span><Link to="/">Foxconn</Link></span>
                     
                     <span className={cx('icon-mobile')} onClick={() =>  setShow(!show)}>
                         <label for="checked">
@@ -154,7 +154,7 @@ function Header() {
                             <MenuItems
                                 className={cx('check')}
                                 title={t('progress')}
-                                to={config.salary}
+                                to={config.salary} 
                                 icon={<FontAwesomeIcon icon={faListCheck} size="lg" />}
                                 AddClass="true"
                             />

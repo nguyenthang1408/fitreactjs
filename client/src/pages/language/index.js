@@ -25,7 +25,7 @@ function Language() {
 
     return (
         <div className={cx('wrapper-language')}>
-            <h2>Please select language</h2>
+            <h2 className={cx('title-language')}>Please select language</h2>
             <Form.Select
                 size="lg"
                 onChange={handleLanguageChange}

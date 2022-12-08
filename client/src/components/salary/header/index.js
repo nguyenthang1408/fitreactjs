@@ -24,18 +24,18 @@ function Header({ salary }) {
                         setShow(true);
                     }}
                 >
-                    <FontAwesomeIcon icon={faPlus} size="6x" />
+                    <FontAwesomeIcon icon={faPlus} className={cx('icon-add')} />
                 </div>
                 <div className={cx('header-aec-center')}>
                     <Link to="/" style={{ color: '#106aef' }}>
-                        <FontAwesomeIcon icon={faHome} size="5x" />
+                        <FontAwesomeIcon icon={faHome} className={cx('icon-home')} />
                     </Link>
                     <span>
                         {t('progress')} {salary}
                     </span>
                 </div>
                 <div className={cx('add-aec')} style={{ color: '#106aef' }}>
-                    <FontAwesomeIcon icon={faKey} size="6x" />
+                    <FontAwesomeIcon icon={faKey} className={cx('icon-password')} />
                 </div>
             </div>
 

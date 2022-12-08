@@ -26,7 +26,7 @@ export default function ModalUpdateTD({
     };
 
     const handleConfirm = () => {
-        Axios.put('http://localhost:3001/phase/finish', { finish: finish, id: finishId }).then((value) => {
+        Axios.put('http://localhost:4000/phase/finish', { finish: finish, id: finishId }).then((value) => {
             setChangeFinish(value.config.data);
             setShowFinish(false);
         });
@@ -34,7 +34,7 @@ export default function ModalUpdateTD({
 
     const handleConfirmInDay = () => {
         if (finish > 8 && finish <= 11) {
-            Axios.put('http://localhost:3001/phase/inDay', { inDay: finish, id: inDayId }).then((value) => {
+            Axios.put('http://localhost:4000/phase/inDay', { inDay: finish, id: inDayId }).then((value) => {
                 setChangeInDay(value.config.data);
                 setShowInDay(false);
             });

@@ -14,7 +14,7 @@ function Modal({ close, setShow, listUser, id }) {
     Axios.defaults.withCredentials = true;
 
     const handleButton = () => {
-        Axios.post('http://localhost:3001/user/update', {
+        Axios.post('http://localhost:4000/user/update', {
             username: user,
             password: password,
             id: id,

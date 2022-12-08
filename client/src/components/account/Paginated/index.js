@@ -14,40 +14,42 @@ function Paging({ totalPage, setPageNumber, pageNumber, setSearch }) {
     return (
         <>
             <div className={cx('paging')}>
-                <button
-                    onClick={() => {
-                        if (pageNumber >= 2) {
-                            setPageNumber(pageNumber - 1);
-                        }
-                    }}
-                >
-                    <FontAwesomeIcon icon={faAnglesLeft} />
-                </button>
-                <button
-                    onClick={() => {
-                        setPageNumber(1);
-                    }}
-                >
-                    1
-                </button>
-                <button
-                    onClick={() => {
-                        setPageNumber(totalPage);
-                    }}
-                >
-                    {totalPage}
-                </button>
-                <button
-                    onClick={() => {
-                        if (pageNumber >= totalPage) {
+                <div>
+                    <button
+                        onClick={() => {
+                            if (pageNumber >= 2) {
+                                setPageNumber(pageNumber - 1);
+                            }
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faAnglesLeft} />
+                    </button>
+                    <button
+                        onClick={() => {
+                            setPageNumber(1);
+                        }}
+                    >
+                        1
+                    </button>
+                    <button
+                        onClick={() => {
                             setPageNumber(totalPage);
-                            return;
-                        }
-                        setPageNumber(pageNumber + 1);
-                    }}
-                >
-                    <FontAwesomeIcon icon={faAnglesRight} />
-                </button>
+                        }}
+                    >
+                        {totalPage}
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (pageNumber >= totalPage) {
+                                setPageNumber(totalPage);
+                                return;
+                            }
+                            setPageNumber(pageNumber + 1);
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faAnglesRight} />
+                    </button>
+                </div>
                 <input
                     type="text"
                     placeholder={t('search')}

@@ -12,7 +12,7 @@ function Modal({ close, setShow }) {
     const [password, setPassWord] = useState([]);
 
     const handleButton = () => {
-        Axios.post('http://localhost:3001/user/add', {
+        Axios.post('http://localhost:4000/user/add', {
             username: user,
             password: password,
         }).then((res) => {

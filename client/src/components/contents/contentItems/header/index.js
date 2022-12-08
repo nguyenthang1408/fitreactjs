@@ -15,7 +15,7 @@ function ContentItems({ title, show, percent, hide, size, salary, AddClass }) {
     const [listProgress, setListProgress] = useState([]);
     useEffect(() => {
         salary
-            ? Axios.get(`http://localhost:3001/show/${salary}`).then((res) => {
+            ? Axios.get(`http://localhost:4000/show/${salary}`).then((res) => {
                   setListProgress(res.data);
               })
             : setListProgress('');
@@ -37,10 +37,10 @@ function ContentItems({ title, show, percent, hide, size, salary, AddClass }) {
                         <ChartPie percent={percent} size={size} />
                     </div>
                     <div className="title-main-show-h2">
-                        <h2>{t('sum')}:43</h2>
-                        <h2>{t('project-loading')}:32</h2>
-                        <h2>{t('project-done')}:11</h2>
-                        <h2>{t('efficiency')}</h2>
+                        <h2 className={cx('link-h2')}><Link to="/">{t('sum')}:43</Link></h2>
+                        <h2 className={cx('link-h2')}><Link to="/">{t('project-loading')}:32</Link></h2>
+                        <h2 className={cx('link-h2')}><Link to="/">{t('project-done')}:11</Link></h2>
+                        <h2 className={cx('link-h2')}><Link to="/">{t('efficiency')}</Link></h2>
                     </div>
                 </div>
             ) : (

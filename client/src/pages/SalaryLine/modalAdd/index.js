@@ -18,7 +18,7 @@ export default function ModalAdd({ setShow }) {
     const [idCard, setIdCard] = useState('');
 
     const AddLine = () => {
-        Axios.post('http://localhost:3001/line/add', {
+        Axios.post('http://localhost:4000/line/add', {
             name: nameMachine,
             progress: 0,
             startDay: startDay,

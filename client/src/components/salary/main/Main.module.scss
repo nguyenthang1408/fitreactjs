@@ -44,3 +44,24 @@
         text-decoration: none;
     }
 }
+
+.main-aec {
+    
+    & .table{
+        .salary-table-th-1{
+            width: 10%;
+        }
+        .salary-table-th-2{
+            width: 20%;
+        }
+        .salary-table-th-3{
+            width: 20%;
+        }
+        .salary-table-th-4{
+            width: 20%;
+        }
+        .salary-table-th-5{
+            width: 20%;
+        }
+    }
+}

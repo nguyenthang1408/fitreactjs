@@ -10,7 +10,7 @@ const session = require("express-session");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:5005"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -37,6 +37,8 @@ app.use(morgan("combined"));
 
 app.use("/", post);
 
-app.listen(3001, () => {
-  console.log("your server is running");
+const POST = 4000;
+
+app.listen(4000, () => {
+  console.log(`your server is running ${POST}`);
 });

@@ -1,6 +1,6 @@
 .Wrapper-body {
     display: flex;
-    height: 80%;
+    height: 79%;
     width: 100%;
     min-width: 0;
     word-wrap: break-word;
@@ -110,4 +110,64 @@
     & .table {
         margin-top: 20px;
     }
+}
+
+
+@media (max-width: 768px){
+    .Wrapper-body{
+        display: block;
+    }
+
+   
+
+    .title-table{
+        width: 100%;
+
+        .table-attendance-name{
+            display: none !important;
+        }
+
+        & .table-attendance-search{
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+
+            & .form-label-name{
+                color: black !important;
+                opacity: 1;
+                font-weight: 600;
+            }
+
+         
+
+            & .input-name{
+                width: 40%;
+
+                & input{
+                    width: 100%;
+                    border: 1px solid #333;
+                }
+
+                & label{
+                    border-radius: 5px;
+                }
+            }
+
+            & .input-salary{
+                display: none;
+            }
+
+            & .input-date{
+                width: 40%;
+                margin-left: 40px;
+                
+                & input{
+                  width: 100%;
+                  font-weight: 600;
+                }
+            }
+        }
+    }
+
+  
 }

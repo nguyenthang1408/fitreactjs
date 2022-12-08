@@ -49,6 +49,10 @@
         display: block;
         width: 100%;
         height: auto;
+
+        & .left{
+            margin-top: 20px;
+        }
     }
 }
 

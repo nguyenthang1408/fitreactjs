@@ -14,7 +14,7 @@ function Main({ salary }) {
 
     useEffect(() => {
         salary
-            ? Axios.get(`http://localhost:3001/show/${salary}`).then((res) => {
+            ? Axios.get(`http://localhost:4000/show/${salary}`).then((res) => {
                   setListSalary(res.data);
               })
             : setListSalary('');
@@ -25,19 +25,19 @@ function Main({ salary }) {
             <table className={cx('table')}>
                 <thead>
                     <tr>
-                        <th style={{ width: '10vw' }} scope="col">
+                        <th className={cx('salary-table-th-1')}>
                             {t('machine-name')}
                         </th>
-                        <th style={{ width: '20vw' }} scope="col">
+                        <th className={cx('salary-table-th-2')}>
                             {t('progress')}
                         </th>
-                        <th style={{ width: '20vw' }} scope="col">
+                        <th className={cx('salary-table-th-3')}>
                             {t('start-day')}
                         </th>
-                        <th style={{ width: '20vw' }} scope="col">
+                        <th className={cx('salary-table-th-4')}>
                             {t('end-date')}
                         </th>
-                        <th style={{ width: '20vw' }} scope="col">
+                        <th className={cx('salary-table-th-5')}>
                             {t('member')}
                         </th>
                     </tr>
