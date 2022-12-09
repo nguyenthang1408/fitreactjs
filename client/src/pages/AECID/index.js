@@ -30,7 +30,7 @@ export default function AECID() {
     const [changeInDay, setChangeInDay] = useState([]);
 
     useEffect(() => {
-        Axios.get('http://localhost:4000/phase').then((res) => {
+        Axios.get('/phase').then((res) => {
             SetListPhase(res.data);
         });
     }, [listAdd, listEdit, listDelete, changeFinish, changeInDay]);

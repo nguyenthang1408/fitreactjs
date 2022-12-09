@@ -53,7 +53,7 @@ function MainAccount() {
     };
 
     useEffect(() => {
-        Axios.get(`http://localhost:4000/user?search=${search}&page=${pageNumber}`).then((res) => {
+        Axios.get(`/user?search=${search}&page=${pageNumber}`).then((res) => {
             setListUser(res.data.result);
             setTotalPage(res.data.totalPage);
         });

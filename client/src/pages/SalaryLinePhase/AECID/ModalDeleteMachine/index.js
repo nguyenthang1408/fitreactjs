@@ -12,7 +12,7 @@ export default function ModalDelete({ setShowDelete, setListDelete, deleteId }) 
     };
 
     const handleDelete = () => {
-        Axios.delete(`http://localhost:4000/phase/line/delete/${deleteId}`).then((value) => {
+        Axios.delete(`/phase/line/delete/${deleteId}`).then((value) => {
             setListDelete(value.data);
             setShowDelete(false);
         });

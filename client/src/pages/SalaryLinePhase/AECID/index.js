@@ -30,7 +30,7 @@ export default function AECID() {
     const idCover = window.atob(id);
 
     useEffect(() => {
-        Axios.get('http://localhost:4000/line/phase').then((res) => {
+        Axios.get('/line/phase').then((res) => {
             SetListPhase(res.data);
         });
     }, [listAdd, listEdit, listDelete, changeFinish, changeInDay]);

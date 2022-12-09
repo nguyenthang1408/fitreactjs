@@ -36,12 +36,12 @@ function Header() {
                     <span><Link to="/">Foxconn</Link></span>
                     
                     <span className={cx('icon-mobile')} onClick={() =>  setShow(!show)}>
-                        <label for="checked">
+                        <label htmlFor="checked">
                             <FontAwesomeIcon icon={faBars} size="2x" />
                         </label>    
                     </span>
             </div>
-        <input type="checkbox" id="checked" className={cx('checked')} checked={show} />
+        <input type="checkbox" id="checked" className={cx('checked')} checked={show} onChange={() => {}} />
           <div className={cx('container-mobile', show)}>
                 <div className={cx('wrapper-page')}>
                     

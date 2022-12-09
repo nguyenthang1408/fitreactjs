@@ -119,16 +119,13 @@
         margin-top: 20px;
         font-weight: 700;
         font-size: 20px;
+        border-bottom: 1px solid #333;
     }
 
     & .title-main-hide-h2 {
         margin-left: 20px;
     }
 
-    & .title-main-hide-chart span {
-        font-size: 20px;
-        font-weight: 700;
-    }
 }
 
 table tr {
@@ -183,6 +180,10 @@ table tr th {
         width: 90%;
         margin-left: 4%;
         margin-top: 100px;
+
+        & .title-main-hide-h2{
+            margin-top: -30px;
+        }
 
         & .title-main-hide-chart{
             position: absolute;

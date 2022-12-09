@@ -14,7 +14,7 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
 
     const handleAdd = () => {
         if (startDay < endDate) {
-            Axios.post('http://localhost:4000/phase/add', {
+            Axios.post('/phase/add', {
                 id: idCover,
                 name: name,
                 startDay: startDay,
@@ -32,7 +32,7 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
     };
 
     const handleEdit = () => {
-        Axios.put('http://localhost:4000/phase/edit', {
+        Axios.put('/phase/edit', {
             id: editId,
             name: name,
             startDay: startDay,

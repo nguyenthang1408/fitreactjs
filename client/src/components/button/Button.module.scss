@@ -63,3 +63,15 @@
     height: 80px;
     font-size: 22px;
 }
+
+
+@media (max-width: 768px){
+    .wrapper {
+        
+        .title{
+             background-color: transparent;
+        }
+       margin: 5px;
+    }
+
+}

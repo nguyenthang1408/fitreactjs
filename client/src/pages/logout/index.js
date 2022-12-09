@@ -27,7 +27,7 @@ function Logout() {
     const { user } = state;
 
     const handleLogout = () => {
-        Axios.get('http://localhost:4000/logout').then((res) => {
+        Axios.get('/logout').then((res) => {
             dispatch(actions.setUser());
             navigate('/');
         });
@@ -38,7 +38,7 @@ function Logout() {
             return setErr('Password and name are not valid!');
         }
 
-        Axios.post('http://localhost:4000/login', {
+        Axios.post('/login', {
             username: username,
             password: password,
         }).then((res) => {
@@ -53,7 +53,7 @@ function Logout() {
     };
 
     useEffect(() => {
-        Axios.get('http://localhost:4000/login').then((res) => {
+        Axios.get('/login').then((res) => {
             if (res.data.loggedIn === true) {
                 dispatch(actions.setUser(res.data.user[0].username));
             }

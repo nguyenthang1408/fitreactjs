@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function ModalDelete({ close, setShow, listUser, id }) {
     const handleButton = () => {
-        Axios.delete(`http://localhost:4000/user/delete/${id}`)
+        Axios.delete(`/user/delete/${id}`)
             .then((res) => {
                 close(false);
                 setShow(id);

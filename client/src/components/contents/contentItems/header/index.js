@@ -15,7 +15,7 @@ function ContentItems({ title, show, percent, hide, size, salary, AddClass }) {
     const [listProgress, setListProgress] = useState([]);
     useEffect(() => {
         salary
-            ? Axios.get(`http://localhost:4000/show/${salary}`).then((res) => {
+            ? Axios.get(`/show/${salary}`).then((res) => {
                   setListProgress(res.data);
               })
             : setListProgress('');

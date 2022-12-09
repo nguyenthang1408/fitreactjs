@@ -14,7 +14,7 @@ function Main({ salary }) {
 
     useEffect(() => {
         salary
-            ? Axios.get(`http://localhost:4000/show/${salary}`).then((res) => {
+            ? Axios.get(`/show/${salary}`).then((res) => {
                   setListSalary(res.data);
               })
             : setListSalary('');
@@ -47,21 +47,21 @@ function Main({ salary }) {
                         if (value.type === 'machine') {
                             return (
                                 <tr key={value.id}>
-                                    <td style={{ width: '10vw' }}>
+                                    <td className={cx('salary-table-td-1')} >
                                         <Link className={cx('link-machine')} to={`/${salary}/${window.btoa(value.id)}`}>
                                             {value.tenmay}
                                         </Link>
                                     </td>
-                                    <td style={{ width: '20vw' }}>{value.tiendo}%</td>
-                                    <td style={{ width: '20vw' }}>{value.ngaybatdau}</td>
-                                    <td style={{ width: '20vw' }}>{value.ngaydukien}</td>
-                                    <td style={{ width: '20vw' }}>{value.mathe}</td>
+                                    <td className={cx('salary-table-td-2')} >{value.tiendo}%</td>
+                                    <td className={cx('salary-table-td-3')} >{(value.ngaybatdau).slice(0,10)}</td>
+                                    <td className={cx('salary-table-td-4')} >{(value.ngaydukien).slice(0,10)}</td>
+                                    <td className={cx('salary-table-td-5')} >{value.mathe}</td>
                                 </tr>
                             );
                         } else {
                             return (
                                 <tr key={value.id}>
-                                    <td style={{ width: '10vw' }}>
+                                    <td className={cx('salary-table-td-1')} >
                                         <Link
                                             className={cx('link-machine')}
                                             to={`/${salary}/line/${window.btoa(value.id)}`}
@@ -69,10 +69,10 @@ function Main({ salary }) {
                                             {value.tenmay}
                                         </Link>
                                     </td>
-                                    <td style={{ width: '20vw' }}>{value.tiendo}%</td>
-                                    <td style={{ width: '20vw' }}>{value.ngaybatdau}</td>
-                                    <td style={{ width: '20vw' }}>{value.ngaydukien}</td>
-                                    <td style={{ width: '20vw' }}>{value.mathe}</td>
+                                    <td className={cx('salary-table-td-2')} >{value.tiendo}%</td>
+                                    <td className={cx('salary-table-td-3')} >{(value.ngaybatdau).slice(0,10)}</td>
+                                    <td className={cx('salary-table-td-4')} >{(value.ngaydukien).slice(0,10)}</td>
+                                    <td className={cx('salary-table-td-5')} >{value.mathe}</td>
                                 </tr>
                             );
                         }

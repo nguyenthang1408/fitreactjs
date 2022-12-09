@@ -16,7 +16,7 @@ export default function SalaryLine() {
     const { salary } = useParams();
 
     useEffect(() => {
-        Axios.get('http://localhost:3000/line').then((res) => {
+        Axios.get('/line').then((res) => {
             setListMachineLine(res.data);
         });
     }, []);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ModalAdd.module.scss';
 import Button from '../button';
@@ -25,6 +25,11 @@ export default function ModalAdd({ setShow }) {
 
     const [idCard, setIdCard] = useState('');
 
+    const [listUserInput,setListUserInput] = useState([]);
+
+    const [card, setCard] = useState([]);
+
+
     const handleShowMachine = () => {
         setShowMachine(true);
         setShowLine(false);
@@ -40,7 +45,7 @@ export default function ModalAdd({ setShow }) {
     };
 
     const Add = () => {
-        Axios.post('http://localhost:4000/machine/add', {
+        Axios.post('/machine/add', {
             name: nameMachine,
             progress: '0',
             startDay: startDay,
@@ -60,7 +65,7 @@ export default function ModalAdd({ setShow }) {
     };
 
     const AddLine = () => {
-        Axios.post('http://localhost:4000/machine/add', {
+        Axios.post('/machine/add', {
             name: nameMachine,
             progress: '0',
             startDay: startDay,
@@ -79,7 +84,6 @@ export default function ModalAdd({ setShow }) {
         });
     };
 
-    console.log(salary);
 
     const close = () => {
         setShow(false);
@@ -88,6 +92,30 @@ export default function ModalAdd({ setShow }) {
     const closeLine = () => {
         setShow(false);
     };
+
+
+
+    useEffect(() => {
+        Axios.get("/listUser").then((value) => {
+            setListUserInput(value.data)
+        });
+    },[]);
+
+    useEffect(() => {
+
+        if(idCard)
+        {
+            setCard(listUserInput.filter((value) => {
+                return (value.id_Card).toLocaleLowerCase().startsWith(idCard.toLocaleLowerCase());
+             }));
+        }else{
+            setCard([])
+        }
+     
+    
+    },[listUserInput,idCard])
+
+
 
     return (
         <>
@@ -140,13 +168,30 @@ export default function ModalAdd({ setShow }) {
                             <option value="TSC">TSC</option>
                             <option value="APS">APS</option>
                         </select>
-                        <input
-                            type="text"
-                            placeholder="ID Card"
-                            onChange={(e) => {
-                                setIdCard(e.target.value);
-                            }}
-                        />
+
+                        <div className={cx('input-id-card')}>
+                            <input
+                                type="text"
+                                placeholder="ID Card"
+                                onChange={(e) => {
+                                    setIdCard(e.target.value);
+                                }}
+                            />
+
+                            <div className={cx('wrapper-id-card')}>
+
+                               <div className={cx('content-card')}>
+                                {card.map((value, key) => {
+                                    return(
+                                        <span key={key}>{value.id_Card}</span>
+                                    )
+                                })}
+                               </div>
+                            </div>
+                        </div>
+
+                      
+                        
                     </div>
                 )}
 

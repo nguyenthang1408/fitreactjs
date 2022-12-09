@@ -4,7 +4,8 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-export default function table() {
+export default function table({list}) {
+    
     return (
         <div className={cx('table')}>
             <table>
@@ -15,14 +16,15 @@ export default function table() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Peter</td>
-                        <td>Griffin</td>
-                    </tr>
-                    <tr>
-                        <td>Lois</td>
-                        <td>Griffin</td>
-                    </tr>
+                    {list.map((value,key) => {
+                        return(
+                            <tr key={key}>
+                                <td>{value.username}</td>
+                                <td>{value.id_Card}</td>
+                            </tr>
+                           )
+                    })}
+                    
                 </tbody>
             </table>
         </div>

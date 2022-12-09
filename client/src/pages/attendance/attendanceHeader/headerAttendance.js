@@ -12,15 +12,15 @@ export default function HeaderAttendance() {
                 <div className={cx('header-content')}>
                     <div className={cx('header-content-left')}>
                         <span>QUÂN SỐ</span>
-                        <input type="number" value="177" />
+                        <input type="number" value="177" readOnly />
                     </div>
                     <div className={cx('header-content-center')}>
                         <span>CÓ MẶT</span>
-                        <input type="number" value="177" />  
+                        <input type="number" value="177" readOnly />  
                     </div>
                     <div className={cx('header-content-right')}>
                         <span>VẮNG MẶT</span>
-                        <input type="number" value="177" />
+                        <input type="number" value="177" readOnly />
                     </div>
                 </div>
             </div>
