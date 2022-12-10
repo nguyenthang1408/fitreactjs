@@ -31,19 +31,19 @@ export default function SalaryLine() {
                     <table className={cx('table')}>
                         <thead>
                             <tr>
-                                <th style={{ width: '10vw' }} scope="col">
+                                <th className={cx('table-th-1')} scope="col">
                                     {t('machine-name')}
                                 </th>
-                                <th style={{ width: '20vw' }} scope="col">
+                                <th className={cx('table-th-2')} scope="col">
                                     {t('progress')}
                                 </th>
-                                <th style={{ width: '20vw' }} scope="col">
+                                <th className={cx('table-th-3')} scope="col">
                                     {t('start-day')}
                                 </th>
-                                <th style={{ width: '20vw' }} scope="col">
+                                <th className={cx('table-th-4')} scope="col">
                                     {t('end-date')}
                                 </th>
-                                <th style={{ width: '20vw' }} scope="col">
+                                <th className={cx('table-th-5')} scope="col">
                                     {t('member')}
                                 </th>
                             </tr>
@@ -52,7 +52,7 @@ export default function SalaryLine() {
                             {listMachineLine.map((value) => {
                                 return (
                                     <tr key={value.id}>
-                                        <td style={{ width: '10vw' }}>
+                                        <td className={cx('table-td-1')}>
                                             <Link
                                                 className={cx('link-machine')}
                                                 to={`/${salary}/line/phase/${window.btoa(value.id)}`}
@@ -60,10 +60,10 @@ export default function SalaryLine() {
                                                 {value.tenmay}
                                             </Link>
                                         </td>
-                                        <td style={{ width: '20vw' }}>{value.tiendo}</td>
-                                        <td style={{ width: '20vw' }}>{value.ngaybatdau}</td>
-                                        <td style={{ width: '20vw' }}>{value.ngaydukien}</td>
-                                        <td style={{ width: '20vw' }}>{value.nhomthuchien}</td>
+                                        <td className={cx('table-td-2')}>{value.tiendo}</td>
+                                        <td className={cx('table-td-3')}>{(value.ngaybatdau).slice(0, 10)}</td>
+                                        <td className={cx('table-td-4')}>{(value.ngaydukien).slice(0, 10)}</td>
+                                        <td className={cx('table-td-5')}>{value.nhomthuchien}</td>
                                     </tr>
                                 );
                             })}

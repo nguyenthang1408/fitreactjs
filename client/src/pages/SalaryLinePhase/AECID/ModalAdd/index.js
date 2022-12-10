@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ModalAdd.module.scss';
 import Button from '../../../../components/button';
@@ -10,7 +10,14 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
     const [name, setName] = useState('');
     const [startDay, setStartDay] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [member, setMember] = useState('');
+
+    const [idCard, setIdCard] = useState('');
+
+    const [listUserInput,setListUserInput] = useState([]);
+
+    const [card, setCard] = useState([]);
+
+    const [userName, setUserName] = useState('');
 
     const handleAdd = () => {
         if (endDate > startDay) {
@@ -19,7 +26,7 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
                 name: name,
                 startDay: startDay,
                 endDate: endDate,
-                member: member,
+                member: userName,
             }).then((res) => {
                 if (res) {
                     setListAdd(res.config.data);
@@ -37,7 +44,7 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
             name: name,
             startDay: startDay,
             endDate: endDate,
-            member: member,
+            member: userName,
         }).then((res) => {
             if (res) {
                 setListEdit(res.config.data);
@@ -53,6 +60,31 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
     const closeEdit = () => {
         setShowEdit(false);
     };
+
+    useEffect(() => {
+        Axios.get("/listUser").then((value) => {
+            setListUserInput(value.data)
+        });
+    },[]);
+
+    useEffect(() => {
+
+        if(idCard)
+        {
+            setCard(listUserInput.filter((value) => {
+                return (value.id_Card).toLocaleLowerCase().startsWith(idCard.toLocaleLowerCase());
+             }));
+        }else{
+            setCard([]);    
+        }
+    
+    },[listUserInput,idCard])
+
+    const handleCard = (value) => {
+        setCard([]);
+        setIdCard(value.id_Card);
+        setUserName(value.username);
+    } 
 
     return (
         <>
@@ -88,13 +120,31 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
                             }}
                         />
                         <label>Member</label>
-                        <input
-                            type="text"
-                            placeholder=""
-                            onChange={(e) => {
-                                setMember(e.target.value);
-                            }}
-                        />
+                        <div className={cx('input-id-card')}>
+                            <input
+                                type="text"
+                                placeholder="ID Card"
+                                value={idCard}
+                                onChange={(e) => {setIdCard(e.target.value)}}
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        setCard([]);
+                                    },100)
+                                }}
+                            />
+
+                            <div className={cx('wrapper-id-card')}>
+
+                               <div className={cx('content-card')}>
+                                {card.map((value, key) => {
+                                    return(
+                                        <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>       
+                                    )
+                                })}
+                               </div>
+                            </div>
+                        </div>
+                   
                     </div>
                     <div className={cx('footer-modal')}>
                         <Button title="Add" primary onClick={handleAdd} />
@@ -136,13 +186,31 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
                                     />
 
                                     <label>Member</label>
-                                    <input
-                                        type="text"
-                                        placeholder={value.thanhvien}
-                                        onChange={(e) => {
-                                            setMember(e.target.value);
-                                        }}
-                                    />
+                                    <div className={cx('input-id-card')}>
+                                     <input
+                                            type="text"
+                                            placeholder={value.thanhvien}
+                                            value={idCard}
+                                            onChange={(e) => {setIdCard(e.target.value)}}
+                                            onBlur={() => {
+                                                setTimeout(() => {
+                                                    setCard([]);
+                                                },100)
+                                            }}
+                                        />
+
+                                        <div className={cx('wrapper-id-card')}>
+
+                                        <div className={cx('content-card')}>
+                                            {card.map((value, key) => {
+                                                return(
+                                                    <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>       
+                                                )
+                                            })}
+                                        </div>
+                                        </div>
+                                    </div>
+                                   
                                 </div>
                                 <div className={cx('footer-modal')}>
                                     <Button title="Edit" primary onClick={handleEdit} />

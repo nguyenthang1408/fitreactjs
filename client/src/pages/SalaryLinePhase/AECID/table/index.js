@@ -7,7 +7,6 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import AddModal from '../ModalAdd';
 import ModalDelete from '../ModalDeleteMachine';
-import Button from '../../../../components/button';
 import ModalUpdateTD from '../ModalUpdateTD';
 
 const cx = classNames.bind(styles);
@@ -75,26 +74,33 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                                 <tr key={value.id}>
                                     <td>{value.name}</td>
                                     <td>{value.tiendo ? value.tiendo : 0}%</td>
-                                    <td>{value.ngaybatdau}</td>
-                                    <td>{value.ngaydukien}</td>
+                                    <td>{(value.ngaybatdau).substring(0, 10)}</td>
+                                    <td>{(value.ngaydukien).substring(0, 10)}</td>
                                     <td className={cx('finish')}>
-                                        <Button
-                                            title={value.ngayhoanthanh}
-                                            primary
-                                            onClick={() => {
-                                                handleFinish(value.id);
-                                            }}
-                                        />
+                                        {
+                                            value.ngayhoanthanh === "0000-00-00"
+                                            
+                                          ? 
+
+                                            <span className={cx('finish-span-0')} onClick={() => {handleFinish(value.id);}}>
+                                        
+                                          0
+
+                                            </span> 
+                                          :
+                                            <span className={cx('finish-span')} onClick={() => {handleFinish(value.id);}}>
+                                                
+                                                {(value.ngayhoanthanh).substring(0, 10)}
+
+                                            </span>    
+                                        }
+                                      
                                     </td>
                                     <td>{value.tonggio}</td>
-                                    <td className={cx('finish')}>
-                                        <Button
-                                            title={value.trongngay}
-                                            primary
-                                            onClick={() => {
-                                                handleInDay(value.id);
-                                            }}
-                                        />
+                                    <td className={cx('finish-day')}>
+                                       <span onClick={() => {handleInDay(value.id);}}>
+                                            {value.trongngay}
+                                       </span>                         
                                     </td>
                                     <td>{value.thucte}</td>
                                     <td>{value.hieusuat ? value.hieusuat : 0}%</td>
@@ -113,7 +119,7 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                                         </Tippy>
                                         <Tippy content="Delete">
                                             <span
-                                                className={cx('icon')}
+                                                className={cx('icon-delete')}
                                                 onClick={() => {
                                                     handleDelete(value.id);
                                                 }}

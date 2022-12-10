@@ -29,6 +29,9 @@ export default function ModalAdd({ setShow }) {
 
     const [card, setCard] = useState([]);
 
+    const [userName, setUserName] = useState('');
+
+
 
     const handleShowMachine = () => {
         setShowMachine(true);
@@ -50,7 +53,7 @@ export default function ModalAdd({ setShow }) {
             progress: '0',
             startDay: startDay,
             endDate: endDate,
-            member: 0,
+            member: userName,
             salary: salary,
             idCard: idCard,
             type: 'machine',
@@ -70,7 +73,7 @@ export default function ModalAdd({ setShow }) {
             progress: '0',
             startDay: startDay,
             endDate: endDate,
-            member: 0,
+            member: userName,
             salary: salary,
             idCard: idCard,
             type: 'line',
@@ -109,12 +112,16 @@ export default function ModalAdd({ setShow }) {
                 return (value.id_Card).toLocaleLowerCase().startsWith(idCard.toLocaleLowerCase());
              }));
         }else{
-            setCard([])
+            setCard([]);    
         }
-     
     
     },[listUserInput,idCard])
 
+    const handleCard = (value) => {
+        setCard([]);
+        setIdCard(value.id_Card);
+        setUserName(value.username);
+    }   
 
 
     return (
@@ -173,8 +180,12 @@ export default function ModalAdd({ setShow }) {
                             <input
                                 type="text"
                                 placeholder="ID Card"
-                                onChange={(e) => {
-                                    setIdCard(e.target.value);
+                                value={idCard}
+                                onChange={(e) => {setIdCard(e.target.value)}}
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        setCard([]);
+                                    },100)
                                 }}
                             />
 
@@ -183,7 +194,7 @@ export default function ModalAdd({ setShow }) {
                                <div className={cx('content-card')}>
                                 {card.map((value, key) => {
                                     return(
-                                        <span key={key}>{value.id_Card}</span>
+                                        <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>       
                                     )
                                 })}
                                </div>
@@ -229,13 +240,30 @@ export default function ModalAdd({ setShow }) {
                             <option value="TSC">TSC</option>
                             <option value="APS">APS</option>
                         </select>
-                        <input
-                            type="text"
-                            placeholder="ID Card"
-                            onChange={(e) => {
-                                setIdCard(e.target.value);
-                            }}
-                        />
+                        <div className={cx('input-id-card')}>
+                            <input
+                                type="text"
+                                placeholder="ID Card"
+                                value={idCard}
+                                onChange={(e) => {setIdCard(e.target.value)}}
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        setCard([]);
+                                    },100)
+                                }}
+                            />
+
+                            <div className={cx('wrapper-id-card')}>
+
+                               <div className={cx('content-card')}>
+                                {card.map((value, key) => {
+                                    return(
+                                        <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>
+                                    )
+                                })}
+                               </div>
+                            </div>
+                        </div>
                     </div>
                 )}
 

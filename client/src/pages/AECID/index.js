@@ -19,8 +19,6 @@ export default function AECID() {
 
     const [listAdd, setListAdd] = useState([]);
 
-    const idCover = window.atob(id);
-
     const [listEdit, setListEdit] = useState([]);
 
     const [listDelete, setListDelete] = useState([]);
@@ -29,27 +27,31 @@ export default function AECID() {
 
     const [changeInDay, setChangeInDay] = useState([]);
 
+    const idCover = parseInt(window.atob(id));
+
+
     useEffect(() => {
         Axios.get('/phase').then((res) => {
             SetListPhase(res.data);
         });
     }, [listAdd, listEdit, listDelete, changeFinish, changeInDay]);
-
+    
     const handleAddMachine = () => {
         setShow(true);
     };
+
 
     return (
         <>
             <div className={cx('Wrapper-machine')}>
                 <div className={cx('wrapper-color')}>
                     <div className={cx('header-machine')}>
-                        <FontAwesomeIcon className={cx('icon-add')} icon={faAdd} size="6x" onClick={handleAddMachine} />
+                        <FontAwesomeIcon className={cx('icon-add')} icon={faAdd} onClick={handleAddMachine} />
                         <div className={cx('header-center')}>
                             <Link to="/">
-                                <FontAwesomeIcon className={cx('icon-home')} icon={faHome} size="5x" />
+                                <FontAwesomeIcon className={cx('icon-home')} icon={faHome} />
                             </Link>
-                            <span>tiendomaymoc</span>
+                            <span>Progress</span>
                         </div>
                     </div>
                     <div className={cx('table-machine')}>

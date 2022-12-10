@@ -16,7 +16,7 @@ export default function BodyAttendance() {
     })
    },[])
 
-
+ 
     return (
         <div className={cx('Wrapper-body')}>
             <div className={cx('title-table')}>

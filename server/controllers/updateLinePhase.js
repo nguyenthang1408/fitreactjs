@@ -13,7 +13,7 @@ const updateLinePhase = (req, res) => {
   const efficiency = 0;
   const overtime = 0;
   const member = req.body.member;
-  console.log(id);
+
   db.query(
     "UPDATE congdoan1 SET name = ?, tiendo = ?, ngaybatdau = ?, ngaydukien = ?, ngayhoanthanh = ?, tonggio = ?, trongngay = ?, thucte = ?, hieusuat = ?, tangca = ?, thanhvien = ? WHERE id = ?",
     [

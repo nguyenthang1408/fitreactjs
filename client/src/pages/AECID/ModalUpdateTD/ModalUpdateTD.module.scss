@@ -67,3 +67,12 @@
         align-items: center;
     }
 }
+
+
+@media (max-width:768px)
+{
+  .wrapper{
+    margin-top: 80px;
+    width: 100%;
+  }
+}

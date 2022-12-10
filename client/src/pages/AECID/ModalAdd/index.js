@@ -101,7 +101,7 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
                 listPhase.map((value) => {
                     if (value.id === editId) {
                         return (
-                            <div className={cx('wrapper')} key={value.id}>
+                            <div className={cx('wrapper-edit')} key={value.id}>
                                 <div className={cx('Header-modal')}>
                                     <span>Edit - Phase</span>
                                 </div>

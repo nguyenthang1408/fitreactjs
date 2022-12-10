@@ -5,12 +5,63 @@
     width: 100%;
     height: 100%;
 
-    & .header-aec-center span {
-        font-size: 40px;
-        font-weight: 700;
+    & .header-aec-center 
+    {
+        span {
+            font-size: 40px;
+            font-weight: 700;
+            margin-left: 10px;
+            }
+            & .icon-home{
+                font-size: 50px;
+            }
     }
 
     & .add-aec {
         cursor: pointer;
+        color: #106aef;
+        font-size: 55px;
+    }
+
+    & .add-aec{
+
+        & .icon-key{
+            color: #106aef;
+            font-size: 50px;
+        }
+    }
+}
+
+
+@media (max-width: 768px)
+{
+    .header-aec {
+
+    
+        & .header-aec-center 
+        {
+            span {
+                font-size: 30px;
+                font-weight: 700;
+                margin-left: 10px;
+                }
+                & .icon-home{
+                    font-size: 35px;
+                }
+        }
+    
+        & .add-aec {
+            cursor: pointer;
+            color: #106aef;
+            font-size: 35px;
+        }
+    
+        & .add-aec{
+    
+            & .icon-key{
+                color: #106aef;
+                font-size: 35px;
+            }
+        }
     }
 }

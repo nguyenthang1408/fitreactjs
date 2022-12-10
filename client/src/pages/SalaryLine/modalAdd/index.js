@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ModalAdd.module.scss';
 import Button from '../../../components/button';
@@ -17,13 +17,19 @@ export default function ModalAdd({ setShow }) {
 
     const [idCard, setIdCard] = useState('');
 
+    const [listUserInput, setListUserInput] = useState([])
+
+    const [card, setCard] = useState([]);
+
+    const [userName, setUserName] = useState('');
+
     const AddLine = () => {
         Axios.post('/line/add', {
             name: nameMachine,
             progress: 0,
             startDay: startDay,
             endDate: endDate,
-            member: 0,
+            member: userName,
             salary: salary,
             idCard: idCard,
             type: 'line',
@@ -35,6 +41,33 @@ export default function ModalAdd({ setShow }) {
     const closeLine = () => {
         setShow(false);
     };
+
+    useEffect(() => {
+        Axios.get("/listUser").then((value) => {
+            setListUserInput(value.data)
+        });
+    },[]);
+
+    useEffect(() => {
+
+        if(idCard)
+        {
+            setCard(listUserInput.filter((value) => {
+                return (value.id_Card).toLocaleLowerCase().startsWith(idCard.toLocaleLowerCase());
+             }));
+        }else{
+            setCard([]);    
+        }
+    
+    },[listUserInput,idCard])
+
+
+
+    const handleCard = (value) => {
+        setCard([]);
+        setIdCard(value.id_Card);
+        setUserName(value.username);
+    } 
 
     return (
         <>
@@ -77,13 +110,31 @@ export default function ModalAdd({ setShow }) {
                         <option value="TSC">TSC</option>
                         <option value="APS">APS</option>
                     </select>
-                    <input
-                        type="text"
-                        placeholder="ID Card"
-                        onChange={(e) => {
-                            setIdCard(e.target.value);
-                        }}
-                    />
+                    <div className={cx('input-id-card')}>
+                        <input
+                            type="text"
+                            placeholder="ID Card"
+                            value={idCard}
+                            onChange={(e) => {
+                                setIdCard(e.target.value);
+                            }}
+                            onBlur={() => {
+                                setTimeout(() => {
+                                    setCard([]);
+                                },100)
+                            }}
+                        />
+                       <div className={cx('wrapper-id-card')}>
+
+                            <div className={cx('content-card')}>
+                            {card.map((value, key) => {
+                                return(
+                                    <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>       
+                                )
+                            })}
+                            </div>
+                            </div>
+                    </div>
                 </div>
 
                 <div className={cx('footer')}>

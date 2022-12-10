@@ -3,11 +3,9 @@ import classNames from 'classnames/bind';
 import styles from './table.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import AddModal from '../ModalAdd';
 import ModalDelete from '../ModalDeleteMachine';
-import Button from '../../../components/button';
 import ModalUpdateTD from '../ModalUpdateTD';
 
 const cx = classNames.bind(styles);
@@ -49,6 +47,7 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
         setInDayId(id);
     };
 
+
     return (
         <>
             <table className={cx('table ')}>
@@ -75,50 +74,48 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                                 <tr key={value.id}>
                                     <td>{value.name}</td>
                                     <td>{value.tiendo}</td>
-                                    <td>{value.ngaybatdau}</td>
-                                    <td>{value.ngaydukien}</td>
+                                    <td>{(value.ngaybatdau).slice(0,10)}</td>
+                                    <td>{(value.ngaydukien).slice(0,10)}</td>
                                     <td className={cx('finish')}>
-                                        <Button
-                                            title={value.ngayhoanthanh}
-                                            primary
-                                            onClick={() => {
-                                                handleFinish(value.id);
-                                            }}
-                                        />
+                                    { (value.ngayhoanthanh) === '0000-00-00' 
+                                        ?
+                                        <span className={cx('span-0')} onClick={() => {handleFinish(value.id)}}>
+                                             0
+                                        </span>
+                                        : 
+                                        <span className={cx('span-finnish')} onClick={() => {handleFinish(value.id)}}>
+                                            {(value.ngayhoanthanh).slice(0,10)}
+                                        </span>
+                                        }
                                     </td>
                                     <td>{value.tonggio}</td>
-                                    <td className={cx('finish')}>
-                                        <Button
-                                            title={value.trongngay}
-                                            primary
-                                            onClick={() => {
-                                                handleInDay(value.id);
-                                            }}
-                                        />
+                                    <td className={cx('finish-day')}>
+                                       <span  onClick={() => {handleInDay(value.id);}}>
+                                               {value.tonggio}
+                                        </span>
                                     </td>
                                     <td>{value.thucte}</td>
                                     <td>{value.hieusuat}</td>
                                     <td>{value.tangca}</td>
                                     <td>{value.thanhvien}</td>
                                     <td>
-                                        <Tippy content="Edit" placement="bottom">
-                                            <span
-                                                onClick={() => {
-                                                    handleEdit(value.id);
-                                                }}
-                                            >
-                                                <FontAwesomeIcon className={cx('icon-edit')} icon={faEdit} />
-                                            </span>
-                                        </Tippy>
-                                        <Tippy placement="bottom" content="Delete">
-                                            <span
-                                                onClick={() => {
-                                                    handleShowDelete(value.id);
-                                                }}
-                                            >
-                                                <FontAwesomeIcon icon={faTrash} className={cx('icon-delete')} />
-                                            </span>
-                                        </Tippy>
+                                        <div className={cx('a')}>
+
+                                                <span
+                                                    onClick={() => {
+                                                        handleEdit(value.id);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon className={cx('icon-edit')} icon={faEdit} />
+                                                </span>
+                                                <span
+                                                    onClick={() => {
+                                                        handleShowDelete(value.id);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTrash} className={cx('icon-delete')} />
+                                                </span>
+                                        </div>
                                     </td>
                                 </tr>
                             );

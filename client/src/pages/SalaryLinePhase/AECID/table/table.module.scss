@@ -26,8 +26,31 @@
 }
 
 .finish {
-    display: flex;
-    justify-content: center;
+    cursor: pointer;
+     
+    span{
+        background-color: #fe2c55;
+    }
+
+    .finish-span-0{
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+
+    .finish-span
+    {
+        padding: 10px 0px;
+        border-radius: 5px;
+    }
+}
+
+.finish-day {
+    cursor: pointer;
+    span{
+        background-color: #fe2c55;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
 }
 
 .icon {
@@ -41,7 +64,7 @@ table tr th {
     text-align: center;
     vertical-align: middle;
     height: 80px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 table tr td {
@@ -51,6 +74,7 @@ table tr td {
     height: 50px;
     font-size: 18px;
     font-weight: 600;
+    font-size: 15px;
 }
 
 table tr th:nth-child(1) {
@@ -102,4 +126,20 @@ table tr th:nth-child(11) {
 table tr th:nth-child(12) {
     background-color: #eb090d;
     width: 5%;
+}
+
+
+@media (max-width: 768px)
+{
+    table tr th {
+        font-size: 20px;
+    }
+
+    table {
+        & .icon-delete
+        {
+            margin-left: 0px;
+            color: #0d6efd;
+        }
+    }
 }
