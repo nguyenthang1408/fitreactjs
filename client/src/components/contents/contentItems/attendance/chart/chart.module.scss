@@ -4,7 +4,7 @@
     font-weight: 700;
     font-size: 30px;
     height: 100%;
-    width: 48.5%;
+    width: 48.7%;
     border-radius: 35px;
     box-shadow: -7px -7px 15px rgb(255, 255, 255), 7px 7px 15px rgba(121, 130, 160, 0.747);
     color: #1656f0;
@@ -22,6 +22,14 @@
     }
 }
 
+@media (max-height: 600px)
+{
+    .item-chart
+    {
+        display: none;
+    }
+}
+
 @media (max-width: 768px){
 
     .left{
@@ -30,10 +38,12 @@
 
     
     .item-chart {
+        display: flex;
         width: 94%;
+        height: 45%;
         margin-top: 10px;
         margin-bottom: 20px;
+        background-color: #dbe9fe;
     }
 }
-
 

@@ -1,9 +1,8 @@
 .titles {
     display: flex;
-    flex-wrap: wrap;
     position: relative;
     height: 100%;
-    width: 100%;
+    width: calc(100% - 2rem);
     margin-top: 2px;
     margin-left: 2rem;
 }

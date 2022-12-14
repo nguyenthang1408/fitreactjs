@@ -1,3 +1,34 @@
+.table{
+
+    tbody{
+        & tr:hover{
+            background-color: rgb(183, 238, 238);
+        }
+    }
+
+    tr{
+        
+        td:nth-child(3)
+        {
+
+           div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            select{
+                margin-right: 20px;
+                height: 35px;
+                width: auto;
+                border: 1px solid black;
+                border-radius: 2px;
+            }
+           }
+        }
+       
+    }
+}
+
 
 
 @media (max-width:768px){
@@ -7,6 +38,13 @@
         th{
             border: none;
             border-radius: 3px;
+        }
+
+        .td-select-option{
+
+            .wrapper-option{
+                display: flex;
+            }
         }
     }
 }

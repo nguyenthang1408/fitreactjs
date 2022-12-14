@@ -9,6 +9,7 @@ const getListUser = (req, res) => {
         else
         {
             res.send(result);
+            console.log("sdfs");
         }
     })
 }

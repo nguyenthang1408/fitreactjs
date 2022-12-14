@@ -150,7 +150,7 @@ table tr th {
 
 .left{
     margin-left: 10px;
-    width: 21%;
+    width: 21.2%;
 }
 
 @media (min-width: 1500px) and (max-width:1600px)
@@ -163,6 +163,13 @@ table tr th {
 
 .sizeL{
     width: 33.333%;
+}
+
+@media (max-width: 1400px)
+{
+    .left{
+        width: 30%;
+    }
 }
 
 

@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function Contents() {
     const { t } = useTranslation(['Home']);
     return (
-        <div className={cx('container')}>
+        <div className={cx('container-content')}>
             <div className={cx('container-progress')}>
                 <Content>
                     <Contentitems title={t('project')} show="show" percent="33" hide={true} size="lg" salary="" AddClass="sizeL"  />
@@ -21,7 +21,7 @@ function Contents() {
                     <Contentitems title="APS" show="" percent="44" hide={false} size="xs" salary="APS" AddClass="left" />
                 </Content>
             </div>
-            <div className={cx('container-attendance')}>
+            <div className={cx('container-attendance-content')}>
                 <Attendance>
                     <Chart title={t('attendance-of-the-day')} AddClass="" />
                     <Chart title={t('attendance-of-the-week')} AddClass="left" />

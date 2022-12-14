@@ -27,6 +27,9 @@ const updateLinePhaseInDay = require("../controllers/updateLinePhaseInDay.js");
 const updatePhaseFinish = require("../controllers/updatePhaseFinish.js");
 const updatePhaseInDay = require("../controllers/updatePhaseInDay.js");
 const getListUser = require("../controllers/getListUser.js")
+const postDayChange = require("../controllers/addDayChange.js")
+const getInDay = require("../controllers/getInDay.js");
+const updatePaid = require("../controllers/updatePaid.js")
 
 const routers = express.Router();
 
@@ -85,5 +88,11 @@ routers.put("/phase/inDay", updatePhaseInDay);
 routers.put("/phase/finish", updatePhaseFinish);
 
 routers.get("/listUser", getListUser);
+
+routers.post("/postDayChange", postDayChange);
+
+routers.get("/getInDay", getInDay);
+
+routers.put("/updatePaid", updatePaid);
 
 module.exports = routers;
