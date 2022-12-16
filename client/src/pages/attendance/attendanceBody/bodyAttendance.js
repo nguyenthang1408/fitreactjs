@@ -6,6 +6,7 @@ import Axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalDay from '../Modal';
+import ModalDelete from './ModalDelete';
 
 const cx = classNames.bind(styles);
 
@@ -27,17 +28,24 @@ export default function BodyAttendance() {
 
     const [showUpdateDateClick, setShowUpdateDateClick] = useState('');
 
+    const [showDeletePaid, setShowDeletePaid] = useState(false);
 
+    const [showChangeUpdatePaid, setShowChangeUpdatePaid] = useState(false)
+
+    const [idDelete, setIdDelete] = useState(0);
+
+    const [deleteChange, setDeleteChange] = useState(false);
 
     const handleOptionChange = (valueOption) => {
         setDayChange(valueOption);
     }
 
+
     useEffect(() => {
        Axios.get("/getInDay").then((value) => {
         setCardInDay(value.data);
        })
-    },[cardInDay])
+    },[showChangeUpdatePaid,deleteChange])
 
     const handleConfirm = (valueConfirm) => {
         if(valueConfirm.card === dayChange.card && valueConfirm.username === dayChange.username)
@@ -62,8 +70,9 @@ export default function BodyAttendance() {
                         progress: undefined,
                         theme: "colored",
                         });
-
                 }
+                setShowChangeUpdatePaid(!showChangeUpdatePaid);
+
             })
             
         }
@@ -79,6 +88,7 @@ export default function BodyAttendance() {
                 progress: undefined,
                 theme: "colored",
                 });
+                setShowChangeUpdatePaid(!showChangeUpdatePaid);
         }
     }
 
@@ -105,7 +115,6 @@ export default function BodyAttendance() {
      .then((value) => {
         if(value.data === 'Success')
         {
-            setShowModalDay(false);
             toast.success('🦄 Success!', {
                 position: "top-right",
                 autoClose: 5000,
@@ -130,9 +139,57 @@ export default function BodyAttendance() {
                 progress: undefined,
                 theme: "colored",
                 });
+
+                setShowChangeUpdatePaid(false);
         }
      })
     }
+
+    const handleDeletePaid = (value) => {
+        setShowDeletePaid(true);
+        setIdDelete(value.id);
+    }
+
+    const handleUpdatePaid = (value) => {
+        setShowUpdatePaid(!showUpdatePaid);
+        setShowUpdateDateClick(value);
+    }
+
+    const handleDeletePaidDay = () => {
+        Axios.delete(`/deletePaidDay/${idDelete}`).then((value) => {
+
+            setDeleteChange(!deleteChange);
+            
+            if(value.data === "Delete")
+            {
+                toast.success('🦄 Delete Success!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
+            }
+            else
+            {
+                toast.warn('🦄 Please Again!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
+            }
+            setShowDeletePaid(false);
+        })
+    }
+    
 
  
     return (
@@ -174,7 +231,13 @@ export default function BodyAttendance() {
         setShowUpdateDateClick={setShowUpdateDateClick}
         showUpdateDateClick={showUpdateDateClick}
         handleUpdate={handleUpdate}
+        handleDeletePaid={handleDeletePaid}
+        handleUpdatePaid={handleUpdatePaid}
         />
+        }
+
+        {
+          showDeletePaid && <ModalDelete setShowDeletePaid={setShowDeletePaid} handleDeletePaidDay={handleDeletePaidDay} />
         }
         </>
     );

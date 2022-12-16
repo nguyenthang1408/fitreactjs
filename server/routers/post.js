@@ -30,6 +30,9 @@ const getListUser = require("../controllers/getListUser.js")
 const postDayChange = require("../controllers/addDayChange.js")
 const getInDay = require("../controllers/getInDay.js");
 const updatePaid = require("../controllers/updatePaid.js")
+const deletePaidDay = require("../controllers/deletePaidDay.js");
+const getCountUser = require("../controllers/getCountUser.js");
+const getUnPaid = require("../controllers/getUnPaid.js");
 
 const routers = express.Router();
 
@@ -89,10 +92,16 @@ routers.put("/phase/finish", updatePhaseFinish);
 
 routers.get("/listUser", getListUser);
 
-routers.post("/postDayChange", postDayChange);
+routers.post("/postDayChange", postDayChange);  
 
 routers.get("/getInDay", getInDay);
 
 routers.put("/updatePaid", updatePaid);
+
+routers.delete("/deletePaidDay/:id", deletePaidDay);
+
+routers.get("/getCountUser", getCountUser);
+
+routers.get("/getUnPaid", getUnPaid);
 
 module.exports = routers;

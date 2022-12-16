@@ -15,10 +15,10 @@ export default function index(
         setShowModalDay,
         setUpdatePaid,
         showUpdatePaid,
-        setShowUpdatePaid,
         showUpdateDateClick,
-        setShowUpdateDateClick,
         handleUpdate,
+        handleDeletePaid,
+        handleUpdatePaid,
     }    
     ) {
 
@@ -30,11 +30,7 @@ export default function index(
 
     
 
-    const handleUpdatePaid = (value) => {
-        setShowUpdatePaid(!showUpdatePaid);
-        setShowUpdateDateClick(value)
-    }
-    
+   
 
 
   return (
@@ -77,7 +73,7 @@ export default function index(
                                 <td>
                                     <div className={cx('td-item-day')}>
                                        <FontAwesomeIcon icon={faPenToSquare} color="#318eff" onClick={() => handleUpdatePaid({username: value.working, card: value.id_Card, working: value.working})}  />
-                                       <FontAwesomeIcon icon={faTrash} color="#318eff" />
+                                       <FontAwesomeIcon icon={faTrash} color="#318eff" onClick={() => {handleDeletePaid({id: value.id})}} />
                                     </div>
                                 </td>
                             </tr>

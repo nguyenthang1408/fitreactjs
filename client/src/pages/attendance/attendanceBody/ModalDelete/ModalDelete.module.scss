@@ -1,0 +1,47 @@
+.wrapper-delete-paid-out
+{
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.7);;
+   z-index: 1001;
+}
+
+.wrapper-delete-paid
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    width: 600px;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+
+    & .header-delete-paid
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        width: 100%;
+
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+        }
+    }
+
+    & .wrapper-content-paid
+    {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+    }
+
+}   
+
