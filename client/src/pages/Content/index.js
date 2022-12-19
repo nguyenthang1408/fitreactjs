@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Content from '../../components/contents';
 import Contentitems from '../../components/contents/contentItems/header';
 import classNames from 'classnames/bind';
@@ -6,19 +6,32 @@ import styles from './Content.module.scss';
 import Attendance from '../../components/contents/contentItems/attendance';
 import Chart from '../../components/contents/contentItems/attendance/chart';
 import { useTranslation } from 'react-i18next';
+import Axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function Contents() {
     const { t } = useTranslation(['Home']);
+
+    const [sumSalary, setSumSalary] = useState([]);
+
+    useEffect(() => {
+        Axios.get("/getSumSalary")
+        .then((value) => {
+            setSumSalary(value.data);
+        })
+    },[])
+
     return (
         <div className={cx('container-content')}>
             <div className={cx('container-progress')}>
                 <Content>
                     <Contentitems title={t('project')} show="show" percent="33" hide={true} size="lg" salary="" AddClass="sizeL"  />
-                    <Contentitems title="AEC" show="" percent="12" hide={false} size="xs" salary="AEC" AddClass="left" />
-                    <Contentitems title="TSC" show="" percent="14" hide={false} size="xs" salary="TSC" AddClass="left" />
-                    <Contentitems title="APS" show="" percent="44" hide={false} size="xs" salary="APS" AddClass="left" />
+                    {sumSalary.map((value, key) => {
+                        return (
+                            <Contentitems key={key} title={value.bophan} show="" percent={((value.sum)/(value.count)).toFixed(1)} hide={false} size="xs" salary={value.bophan} AddClass="left" />
+                        )
+                    })}
                 </Content>
             </div>
             <div className={cx('container-attendance-content')}>

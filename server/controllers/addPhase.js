@@ -17,9 +17,10 @@ const addPhase = (req, res) => {
   const efficiency = 0;
   const overtime = 0;
   const member = req.body.member;
+  const card = req.body.card;
 
   db.query(
-    "INSERT  INTO congdoan(name, tiendo, ngaybatdau, ngaydukien, ngayhoanthanh, tonggio, trongngay, thucte, hieusuat, tangca, thanhvien, parent_id) value(?,?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT  INTO congdoan(name, tiendo, ngaybatdau, ngaydukien, ngayhoanthanh, tonggio, trongngay, thucte, hieusuat, tangca, thanhvien,card, parent_id) value(?,?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       namePhase,
       progress,
@@ -32,6 +33,7 @@ const addPhase = (req, res) => {
       efficiency,
       overtime,
       member,
+      card,
       idConvert,
     ],
     (err, value) => {

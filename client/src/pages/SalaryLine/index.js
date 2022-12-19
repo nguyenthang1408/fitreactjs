@@ -5,6 +5,8 @@ import styles from './salary.module.scss';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../SalaryLine/header';
 import Axios from 'axios';
+import { useStore, actions } from '../../store';
+ 
 
 const cx = classNames.bind(styles);
 
@@ -15,17 +17,38 @@ export default function SalaryLine() {
 
     const { salary } = useParams();
 
+    const [changAdd, setChangeAdd] = useState();
+
+    const [state, dispatch] = useStore();
+
+    const {id} = useParams();
+    const parent_Id = window.atob(id);
+
+
+    useEffect(() => {
+        if(parent_Id > 0)
+        {
+            dispatch(actions.Id_parent(parent_Id));
+        }
+    },[dispatch,parent_Id],state)
+  
+
+
+
     useEffect(() => {
         Axios.get('/line').then((res) => {
             setListMachineLine(res.data);
         });
-    }, []);
+    }, [changAdd]);
+
+
+
 
     return (
         <div className={cx('wrapper-Line')}>
             <div className={cx('wrapper-color')}>
                 <div className={cx('salary-header')}>
-                    <Header salary={salary} />
+                    <Header salary={salary} parent_Id={parent_Id} setChangeAdd={setChangeAdd} />
                 </div>
                 <div className={cx('wrapper')}>
                     <table className={cx('table')}>

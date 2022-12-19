@@ -17,9 +17,12 @@ const addLinePhase = (req, res) => {
   const efficiency = 0;
   const overtime = 0;
   const member = req.body.member;
+  const card = req.body.idCard;
+  const idP = req.body.idP;
+
 
   db.query(
-    "INSERT  INTO congdoan1(name, tiendo, ngaybatdau, ngaydukien, ngayhoanthanh, tonggio, trongngay, thucte, hieusuat, tangca, thanhvien, parent_id) value(?,?,?,?,?,?,?,?,?,?,?,?)",
+    "INSERT  INTO congdoan1(name, tiendo, ngaybatdau, ngaydukien, ngayhoanthanh, tonggio, trongngay, thucte, hieusuat, tangca, thanhvien,card , parent_id, parent_id_id) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
     [
       namePhase,
       progress,
@@ -32,13 +35,70 @@ const addLinePhase = (req, res) => {
       efficiency,
       overtime,
       member,
+      card,
       idConvert,
+      idP,
     ],
     (err, value) => {
       if (err) {
         console.log(err);
       } else {
         res.send(value);
+
+        db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count FROM `congdoan1` WHERE parent_id = ?",
+        [idConvert],
+        (err,result) => 
+        {
+          if(err)
+          {
+            console.log(err);
+          }
+          else
+          {
+            const sum = result[0].sum / result[0].count;
+
+            db.query("UPDATE tiendomaymoc1 SET tiendo = ? WHERE id = ?",
+            [sum, idConvert],
+            (err, result) => {
+              if(err)
+              {
+                console.log(err);
+              }
+              else
+              {
+                db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count FROM `tiendomaymoc1` WHERE parent_id = ?",
+                    [idP],
+                    (err, result) => {
+                    if(err)
+                    {
+                      console.log(err);
+                    }
+                    else
+                    {
+                      const sumProgress = result[0].sum / result[0].count;
+       
+                      db.query("UPDATE tiendomaymoc SET tiendo = ? WHERE id = ?",
+                      [sumProgress, idP],
+                      (err,result) => {
+                        if(err)
+                        {
+                          console.log(err);
+                        }
+                        else
+                        {
+
+                        }
+                      }
+                      )
+                    }
+                    }
+                    )
+              }
+            }
+            )
+          }
+        }
+        );
       }
     }
   );

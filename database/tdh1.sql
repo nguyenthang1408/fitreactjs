@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Dec 10, 2022 at 10:50 AM
+-- Generation Time: Dec 19, 2022 at 10:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -40,6 +40,7 @@ CREATE TABLE `congdoan` (
   `hieusuat` int(11) NOT NULL,
   `tangca` int(11) NOT NULL,
   `thanhvien` varchar(255) NOT NULL,
+  `card` varchar(255) NOT NULL,
   `parent_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -47,8 +48,9 @@ CREATE TABLE `congdoan` (
 -- Dumping data for table `congdoan`
 --
 
-INSERT INTO `congdoan` (`id`, `name`, `tiendo`, `ngaybatdau`, `ngaydukien`, `ngayhoanthanh`, `tonggio`, `trongngay`, `thucte`, `hieusuat`, `tangca`, `thanhvien`, `parent_id`) VALUES
-(1, '3dto2d', 0, '2022-12-08', '2022-12-21', '0000-00-00', 312, 0, 0, 0, 0, 's', 2);
+INSERT INTO `congdoan` (`id`, `name`, `tiendo`, `ngaybatdau`, `ngaydukien`, `ngayhoanthanh`, `tonggio`, `trongngay`, `thucte`, `hieusuat`, `tangca`, `thanhvien`, `card`, `parent_id`) VALUES
+(16, '3d to 2d', 100, '2022-12-07', '2023-01-05', '2022-12-27', 696, 0, 487, 143, 0, 'Trần Thị Nhung', 'V0239482', 13),
+(17, 'buyoff', 0, '2022-12-07', '2023-01-05', '0000-00-00', 696, 0, 0, 0, 0, 'Nguyễn Văn Thắng', 'V0264133', 7);
 
 -- --------------------------------------------------------
 
@@ -69,15 +71,18 @@ CREATE TABLE `congdoan1` (
   `hieusuat` int(11) NOT NULL,
   `tangca` int(11) NOT NULL,
   `thanhvien` varchar(255) NOT NULL,
-  `parent_id` int(11) NOT NULL
+  `card` varchar(255) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `parent_id_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `congdoan1`
 --
 
-INSERT INTO `congdoan1` (`id`, `name`, `tiendo`, `ngaybatdau`, `ngaydukien`, `ngayhoanthanh`, `tonggio`, `trongngay`, `thucte`, `hieusuat`, `tangca`, `thanhvien`, `parent_id`) VALUES
-(1, 'AOI', 0, '2022-12-08', '2022-12-30', '0000-00-00', 528, 0, 0, 0, 0, 'v4324234', 1);
+INSERT INTO `congdoan1` (`id`, `name`, `tiendo`, `ngaybatdau`, `ngaydukien`, `ngayhoanthanh`, `tonggio`, `trongngay`, `thucte`, `hieusuat`, `tangca`, `thanhvien`, `card`, `parent_id`, `parent_id_id`) VALUES
+(8, 'buyoff', 100, '2022-12-09', '2023-01-05', '2022-12-29', 648, 0, 487, 133, 0, 'Trần Thị Nhung', 'V0239482', 10, 11),
+(38, 'sd', 0, '2022-12-02', '2023-01-05', '0000-00-00', 816, 0, 0, 0, 0, 'Trần Thị Nhung', 'V0239482', 10, 11);
 
 -- --------------------------------------------------------
 
@@ -89,17 +94,18 @@ CREATE TABLE `listuser` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `id_Card` varchar(255) NOT NULL,
-  `salary` varchar(255) NOT NULL
+  `salary` varchar(255) NOT NULL,
+  `efficiency` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `listuser`
 --
 
-INSERT INTO `listuser` (`id`, `username`, `id_Card`, `salary`) VALUES
-(1, 'nguyen van anh', 'v0264133', 'AEC'),
-(2, 'nguyen thi c', 'V02394822', 'TSC'),
-(3, 'tran anh thu', 'V0343434', 'APS');
+INSERT INTO `listuser` (`id`, `username`, `id_Card`, `salary`, `efficiency`) VALUES
+(1, 'Nguyễn Văn Thắng', 'V0264133', 'AEC', 100),
+(2, 'Trần Thị Nhung', 'V0239482', 'TSC', 100),
+(3, 'Nguyễn Văn Thống', 'V0343434', 'APS', 100);
 
 -- --------------------------------------------------------
 
@@ -124,8 +130,12 @@ CREATE TABLE `tiendomaymoc` (
 --
 
 INSERT INTO `tiendomaymoc` (`id`, `tenmay`, `tiendo`, `ngaybatdau`, `ngaydukien`, `nhomthuchien`, `bophan`, `mathe`, `type`) VALUES
-(2, 'hb', 0, '2022-12-08', '2022-12-16', 'nguyen thi c', 'AEC', 'V02394822', 'machine'),
-(4, 'line 2', 0, '2022-12-14', '2022-12-30', 'nguyen thi c', 'AEC', 'V02394822', 'line');
+(7, 'AOI', 0, '2022-12-08', '2022-12-29', 'Nguyễn Văn Thắng', 'AEC', 'V0264133', 'machine'),
+(8, 'HB', 0, '2022-12-15', '2022-12-29', 'Nguyễn Văn Thống', 'AEC', 'V0343434', 'machine'),
+(11, 'line 2', 57, '2022-12-01', '2022-12-29', 'Trần Thị Nhung', 'AEC', 'V0239482', 'line'),
+(12, 'Line 5', 0, '2022-12-14', '2023-01-04', 'Nguyễn Văn Thắng', 'TSC', 'V0264133', 'line'),
+(13, 'HB', 100, '2022-12-07', '2023-01-06', 'Trần Thị Nhung', 'APS', 'V0239482', 'machine'),
+(15, 'sdfs', 0, '2022-11-29', '2023-01-05', 'Trần Thị Nhung', 'APS', 'V0239482', 'machine');
 
 -- --------------------------------------------------------
 
@@ -142,16 +152,32 @@ CREATE TABLE `tiendomaymoc1` (
   `nhomthuchien` varchar(255) NOT NULL,
   `bophan` varchar(255) NOT NULL,
   `mathe` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL
+  `type` varchar(255) NOT NULL,
+  `parent_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tiendomaymoc1`
 --
 
-INSERT INTO `tiendomaymoc1` (`id`, `tenmay`, `tiendo`, `ngaybatdau`, `ngaydukien`, `nhomthuchien`, `bophan`, `mathe`, `type`) VALUES
-(1, 'zcx', 0, '2022-12-07', '2022-12-14', '0', 'TSC', 'vbsdf', 'line'),
-(2, 'hb', 0, '2022-12-06', '2022-12-22', 'nguyen thi c', 'TSC', 'V02394822', 'line');
+INSERT INTO `tiendomaymoc1` (`id`, `tenmay`, `tiendo`, `ngaybatdau`, `ngaydukien`, `nhomthuchien`, `bophan`, `mathe`, `type`, `parent_id`) VALUES
+(9, 'AOI', 100, '2022-12-08', '2023-01-05', 'Trần Thị Nhung', 'APS', 'V0239482', 'line', 11),
+(10, 'HB', 13, '2022-12-08', '2023-01-05', 'Trần Thị Nhung', 'APS', 'V0239482', 'line', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trongngay`
+--
+
+CREATE TABLE `trongngay` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `id_Card` varchar(255) NOT NULL,
+  `salary` varchar(255) NOT NULL,
+  `working` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -207,6 +233,12 @@ ALTER TABLE `tiendomaymoc1`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trongngay`
+--
+ALTER TABLE `trongngay`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -220,13 +252,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `congdoan`
 --
 ALTER TABLE `congdoan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `congdoan1`
 --
 ALTER TABLE `congdoan1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `listuser`
@@ -238,13 +270,19 @@ ALTER TABLE `listuser`
 -- AUTO_INCREMENT for table `tiendomaymoc`
 --
 ALTER TABLE `tiendomaymoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tiendomaymoc1`
 --
 ALTER TABLE `tiendomaymoc1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `trongngay`
+--
+ALTER TABLE `trongngay`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `user`

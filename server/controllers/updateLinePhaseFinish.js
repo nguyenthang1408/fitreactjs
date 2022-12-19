@@ -4,6 +4,8 @@ const updateLinePhaseFinish = (req, res) => {
   const finish = req.body.finish;
   const id = req.body.id;
   const progress = 100;
+  const idCover = req.body.idCover;
+
 
   db.query(
     "SELECT ngaybatdau FROM congdoan1 WHERE id = ?",
@@ -37,6 +39,62 @@ const updateLinePhaseFinish = (req, res) => {
                         console.log(err);
                       } else {
                         res.send(result);
+
+                        db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count, parent_id_id FROM `congdoan1` WHERE parent_id = ?",
+                        [idCover],
+                        (err,result) => 
+                        {
+                          if(err)
+                          {
+                            console.log(err);
+                          }
+                          else
+                          {
+                            const sum = result[0].sum / result[0].count;
+                            const parentIDID = result[0].parent_id_id;
+
+                            db.query("UPDATE tiendomaymoc1 SET tiendo = ? WHERE id = ?",
+                            [sum, idCover],
+                            (err, result) => {
+                              if(err)
+                              {
+                                console.log(err);
+                              }
+                              else
+                              {
+                                 db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count FROM `tiendomaymoc1` WHERE parent_id = ?",
+                                 [parentIDID],
+                                 (err, result) => {
+                                  if(err)
+                                  {
+                                    console.log(err);
+                                  }
+                                  else
+                                  {
+                                    const sumProgress = result[0].sum / result[0].count;
+
+                                    db.query("UPDATE tiendomaymoc SET tiendo = ? WHERE id = ?",
+                                    [sumProgress, parentIDID],
+                                    (err,result) => {
+                                      if(err)
+                                      {
+                                        console.log(err);
+                                      }
+                                      else
+                                      {
+
+                                      }
+                                    }
+                                    )
+                                  }
+                                 }
+                                 )
+                              }
+                            }
+                            )
+                          }
+                        }
+                        )
                       }
                     }
                   );

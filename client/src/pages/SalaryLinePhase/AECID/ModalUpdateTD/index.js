@@ -14,6 +14,7 @@ export default function ModalUpdateTD({
     setShowInDay,
     type,
     setChangeInDay,
+    idCover,
 }) {
     const [finish, setFinish] = useState('');
 
@@ -26,11 +27,11 @@ export default function ModalUpdateTD({
     };
 
     const handleConfirm = () => {
-        Axios.put('/phase/line/finish', { finish: finish, id: finnishId }).then((value) => {
+        Axios.put('/phase/line/finish', { finish: finish, id: finnishId, idCover: idCover}).then((value) => {
             setChangeFinish(value.config.data);
             setShowFinish(false);
         });
-    };
+    };                
 
     const handleConfirmInDay = () => {
         if (finish > 8 && finish <= 11) {

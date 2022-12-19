@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-export default function ModalAdd({ setShow }) {
+export default function ModalAdd({ setShow, setChangeSalary }) {
     const [showMachine, setShowMachine] = useState(false);
 
     const [showMachineColor, setShowMachineColor] = useState('');
@@ -63,6 +63,10 @@ export default function ModalAdd({ setShow }) {
                 alert('trung ma');
                 return;
             }
+            else
+            {
+                setChangeSalary(res);
+            }
             setShow(false);
         });
     };
@@ -82,6 +86,10 @@ export default function ModalAdd({ setShow }) {
                 setShow(false);
                 alert('trung ma');
                 return;
+            }
+            else
+            {
+                setChangeSalary(res);
             }
             setShow(false);
         });
@@ -170,7 +178,6 @@ export default function ModalAdd({ setShow }) {
                                 setSalary(e.target.value);
                             }}
                         >
-                            <option value="">Select Salary</option>
                             <option value="AEC">AEC</option>
                             <option value="TSC">TSC</option>
                             <option value="APS">APS</option>
@@ -235,7 +242,6 @@ export default function ModalAdd({ setShow }) {
                                 setSalary(e.target.value);
                             }}
                         >
-                            <option disabled>Select</option>
                             <option value="AEC">AEC</option>
                             <option value="TSC">TSC</option>
                             <option value="APS">APS</option>

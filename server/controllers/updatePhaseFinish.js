@@ -4,6 +4,8 @@ const updatePhaseFinish = (req, res) => {
   const finish = req.body.finish;
   const id = req.body.id;
   const progress = 100;
+  const idCover = req.body.idCover;
+
 
   db.query(
     "SELECT ngaybatdau FROM congdoan WHERE id = ?",
@@ -37,6 +39,31 @@ const updatePhaseFinish = (req, res) => {
                         console.log(err);
                       } else {
                         res.send(result);
+
+                        db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count FROM `congdoan` WHERE parent_id = ?",
+                        [idCover], (err,result) => {
+                          if(err)
+                          {
+                            console.log(err);
+                          }
+                          else
+                          {
+                            const sum = result[0].sum / result[0].count;
+
+                            db.query("UPDATE tiendomaymoc SET tiendo = ? WHERE id = ?", 
+                            [sum, idCover],
+                            (err,result) => {
+                              if(err)
+                              {
+                                console.log(err);
+                              }
+                              else
+                              {
+                                
+                              }
+                            })
+                          }
+                        })
                       }
                     }
                   );

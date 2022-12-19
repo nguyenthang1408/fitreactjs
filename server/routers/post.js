@@ -33,6 +33,17 @@ const updatePaid = require("../controllers/updatePaid.js")
 const deletePaidDay = require("../controllers/deletePaidDay.js");
 const getCountUser = require("../controllers/getCountUser.js");
 const getUnPaid = require("../controllers/getUnPaid.js");
+const getCountUserDay = require("../controllers/getCountUserDay.js");
+const getSumSalary = require("../controllers/getSumSalary.js");
+const getCountProjectSum = require("../controllers/getCountProjectSum.js");
+const getCountProjectDone = require("../controllers/getCountProjectDone.js");
+const getCountProjectLoading = require("../controllers/getCountProjectLoading.js");
+const getProjectSum = require("../controllers/ProjectProgress/getProjectSum.js");
+const getProjectLoading = require("../controllers/ProjectProgress/getProjectLoading.js");
+const getProjectDone = require("../controllers/ProjectProgress/getProjectDone.js");
+const getEfficiency = require("../controllers/ProjectProgress/getEfficiency.js");
+
+
 
 const routers = express.Router();
 
@@ -103,5 +114,23 @@ routers.delete("/deletePaidDay/:id", deletePaidDay);
 routers.get("/getCountUser", getCountUser);
 
 routers.get("/getUnPaid", getUnPaid);
+
+routers.get("/getCountUserDay", getCountUserDay);
+
+routers.get("/getSumSalary", getSumSalary);
+
+routers.get("/CountProjectSum", getCountProjectSum);
+
+routers.get("/CountProjectDone", getCountProjectDone);
+
+routers.get("/CountProjectLoading", getCountProjectLoading);
+
+routers.get("/getProjectSum", getProjectSum);
+
+routers.get("/getProjectLoading", getProjectLoading);
+
+routers.get("/getProjectDone", getProjectDone);
+
+routers.get("/getEfficiency", getEfficiency);
 
 module.exports = routers;

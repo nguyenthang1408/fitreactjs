@@ -13,9 +13,10 @@ const updateLinePhase = (req, res) => {
   const efficiency = 0;
   const overtime = 0;
   const member = req.body.member;
+  const card = req.body.idCard;
 
   db.query(
-    "UPDATE congdoan1 SET name = ?, tiendo = ?, ngaybatdau = ?, ngaydukien = ?, ngayhoanthanh = ?, tonggio = ?, trongngay = ?, thucte = ?, hieusuat = ?, tangca = ?, thanhvien = ? WHERE id = ?",
+    "UPDATE congdoan1 SET name = ?, tiendo = ?, ngaybatdau = ?, ngaydukien = ?, ngayhoanthanh = ?, tonggio = ?, trongngay = ?, thucte = ?, hieusuat = ?, tangca = ?, thanhvien = ?, card = ? WHERE id = ?",
     [
       namePhase,
       progress,
@@ -28,6 +29,7 @@ const updateLinePhase = (req, res) => {
       efficiency,
       overtime,
       member,
+      card,
       id,
     ],
     (err, value) => {

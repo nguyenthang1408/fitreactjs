@@ -7,6 +7,7 @@ import 'tippy.js/dist/tippy.css';
 import AddModal from '../ModalAdd';
 import ModalDelete from '../ModalDeleteMachine';
 import ModalUpdateTD from '../ModalUpdateTD';
+import ModalUpdate from '../ModalUpdate';
 
 const cx = classNames.bind(styles);
 
@@ -27,8 +28,10 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
 
     const [inDayId, setInDayId] = useState(0);
 
+    const [showUpdate, setShowUpdate] = useState(false);
+
     const handleEdit = (id) => {
-        setShow(true);
+        setShowUpdate(true);
         setEditId(id);
     };
 
@@ -71,6 +74,11 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                     {listPhase.map((value) => {
                         if (value.parent_id === idCover) {
                             return (
+
+
+                                value.tiendo !== 100 ?
+
+
                                 <tr key={value.id}>
                                     <td>{value.name}</td>
                                     <td>{value.tiendo}</td>
@@ -91,7 +99,7 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                                     <td>{value.tonggio}</td>
                                     <td className={cx('finish-day')}>
                                        <span  onClick={() => {handleInDay(value.id);}}>
-                                               {value.tonggio}
+                                               {value.trongngay}
                                         </span>
                                     </td>
                                     <td>{value.thucte}</td>
@@ -118,6 +126,47 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                                         </div>
                                     </td>
                                 </tr>
+
+                                :  <tr key={value.id} style={{backgroundColor: "#f1eded"}}>
+
+                                <td>{value.name}</td>
+                                <td>{value.tiendo}</td>
+                                <td>{(value.ngaybatdau).slice(0,10)}</td>
+                                <td>{(value.ngaydukien).slice(0,10)}</td>
+                                <td className={cx('finish')}>
+                                { (value.ngayhoanthanh) === '0000-00-00' 
+                                    ?
+                                    <span className={cx('span-0')} >
+                                         0
+                                    </span>
+                                    : 
+                                    <span className={cx('span-finnish')} >
+                                        {(value.ngayhoanthanh).slice(0,10)}
+                                    </span>
+                                    }
+                                </td>
+                                <td>{value.tonggio}</td>
+                                <td className={cx('finish-day')}>
+                                   <span>
+                                           {value.trongngay}
+                                    </span>
+                                </td>
+                                <td>{value.thucte}</td>
+                                <td>{value.hieusuat}</td>
+                                <td>{value.tangca}</td>
+                                <td>{value.thanhvien}</td>
+                                <td>
+                                    <div className={cx('a')}>
+
+                                            <span>
+                                                <FontAwesomeIcon className={cx('icon-edit')} icon={faEdit} />
+                                            </span>
+                                            <span>
+                                                <FontAwesomeIcon icon={faTrash} className={cx('icon-delete')} />
+                                            </span>
+                                    </div>
+                                </td>
+                            </tr>
                             );
                         } else {
                             return null;
@@ -127,14 +176,20 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
             </table>
             {show && (
                 <AddModal
-                    title="edit"
                     setShow={setShow}
                     setListAdd
                     editId={editId}
-                    listPhase={listPhase}
                     setListEdit={setListEdit}
                 />
             )}
+
+            {showUpdate && 
+            <ModalUpdate 
+                setShowUpdate={setShowUpdate}
+                editId={editId}
+                listPhase={listPhase}
+                setListEdit={setListEdit} 
+            />}
 
             {showDelete && (
                 <ModalDelete setShowDelete={setShowDelete} deleteId={deleteId} setListDelete={setListDelete} />
@@ -146,6 +201,7 @@ export default function Table({ listPhase, idCover, setListEdit, setListDelete, 
                     setShowFinish={setShowFinish}
                     type=""
                     setChangeFinish={setChangeFinish}
+                    idCover={idCover}
                 />
             )}
 

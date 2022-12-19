@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Main({ salary }) {
+function Main({ salary, changeSalary }) {
     const { t } = useTranslation(['Home']);
 
     const [listSalary, setListSalary] = useState([]);
+
 
     useEffect(() => {
         salary
@@ -18,7 +19,7 @@ function Main({ salary }) {
                   setListSalary(res.data);
               })
             : setListSalary('');
-    }, [salary]);
+    }, [salary, changeSalary]);
 
     return (
         <div className={cx('main-aec')}>

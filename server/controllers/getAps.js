@@ -2,6 +2,7 @@ const db = require("../model/index.js");
 
 const getAps = (req, res) => {
   const salary = "APS";
+
   db.query(
     "SELECT * FROM tiendomaymoc where bophan = ?",
     [salary],

@@ -1,0 +1,42 @@
+.wrapper-sum{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .sum-color
+    {
+        height: calc(100% - 20px);
+        width: calc(100% - 20px);
+        background-color: white;
+        border-radius: 10px;
+
+        & .sum-header
+        {
+            height: 20%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & span {
+                font-size: 80px;
+                color: #0d82fe;
+            }
+        }
+
+        & .sum-body
+        {
+            height: 80%;
+            width: 100%;
+
+            & table tr td:nth-child(1) a
+            {
+                text-decoration: none;
+            }
+        }
+    }
+
+    
+}

@@ -30,12 +30,12 @@ export default function AECID() {
     const idCover = parseInt(window.atob(id));
 
 
+
     useEffect(() => {
         Axios.get('/phase').then((res) => {
             SetListPhase(res.data);
         });
     }, [listAdd, listEdit, listDelete, changeFinish, changeInDay]);
-    
     const handleAddMachine = () => {
         setShow(true);
     };

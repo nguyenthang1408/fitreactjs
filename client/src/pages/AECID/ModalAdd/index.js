@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ModalAdd.module.scss';
 import Button from '../../../components/button';
@@ -6,11 +6,34 @@ import Axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-export default function AddModal({ setShow, setListAdd, idCover, title, editId, listPhase, setListEdit }) {
+export default function AddModal({ setShow, setListAdd, idCover}) {
     const [name, setName] = useState('');
     const [startDay, setStartDay] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [member, setMember] = useState('');
+    const [card, setCard] = useState([]);
+    const [userName, setUserName] = useState('');
+    const [listUserInput,setListUserInput] = useState([]);
+    const [idCard, setIdCard] = useState('');
+
+
+    useEffect(() => {
+        Axios.get("/listUser").then((value) => {
+            setListUserInput(value.data)
+        });
+    },[]);
+
+    useEffect(() => {
+
+        if(idCard)
+        {
+            setCard(listUserInput.filter((value) => {
+                return (value.id_Card).toLocaleLowerCase().startsWith(idCard.toLocaleLowerCase());
+             }));
+        }else{
+            setCard([]);    
+        }
+    
+    },[listUserInput,idCard])
 
     const handleAdd = () => {
         if (startDay < endDate) {
@@ -19,7 +42,8 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
                 name: name,
                 startDay: startDay,
                 endDate: endDate,
-                member: member,
+                member: userName,
+                card: idCard,
             }).then((res) => {
                 if (res) {
                     setListAdd(res.config.data);
@@ -31,29 +55,23 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
         }
     };
 
-    const handleEdit = () => {
-        Axios.put('/phase/edit', {
-            id: editId,
-            name: name,
-            startDay: startDay,
-            endDate: endDate,
-            member: member,
-        }).then((res) => {
-            if (res) {
-                setListEdit(res.config.data);
-                setShow(false);
-            }
-        });
-    };
+
 
     const close = () => {
         setShow(false);
     };
 
+    const handleCard = (value) => {
+        setCard([]);
+        setIdCard(value.id_Card);
+        setUserName(value.username);
+    } 
+
     return (
         <>
+            
             <div className={cx('wrapper-out')}></div>
-            {title === '' ? (
+
                 <div className={cx('wrapper')}>
                     <div className={cx('Header-modal')}>
                         <span>Add - Phase</span>
@@ -84,73 +102,38 @@ export default function AddModal({ setShow, setListAdd, idCover, title, editId, 
                             }}
                         />
                         <label>Member</label>
-                        <input
-                            type="text"
-                            placeholder=""
-                            onChange={(e) => {
-                                setMember(e.target.value);
-                            }}
-                        />
+                        <div className={cx('input-id-card')}>
+                            <input
+                                type="text"
+                                placeholder="ID Card"
+                                value={idCard}
+                                onChange={(e) => {
+                                    setIdCard(e.target.value);
+                                }}
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        setCard([]);
+                                    },100)
+                                }}
+                            />
+
+                            <div className={cx('wrapper-id-card')}>
+
+                               <div className={cx('content-card')}>
+                                {card.map((value, key) => {
+                                    return(
+                                        <span key={key} onClick={() => {handleCard(value)}}>{value.id_Card}</span>       
+                                    )
+                                })}
+                               </div>
+                            </div>
+                        </div>
                     </div>
                     <div className={cx('footer-modal')}>
                         <Button title="Add" primary onClick={handleAdd} />
                         <Button title="Close" outline onClick={close} />
                     </div>
                 </div>
-            ) : (
-                listPhase.map((value) => {
-                    if (value.id === editId) {
-                        return (
-                            <div className={cx('wrapper-edit')} key={value.id}>
-                                <div className={cx('Header-modal')}>
-                                    <span>Edit - Phase</span>
-                                </div>
-                                <div className={cx('body-modal')}>
-                                    <label>Name Phase</label>
-                                    <input
-                                        type="text"
-                                        placeholder={value.name}
-                                        onChange={(e) => {
-                                            setName(e.target.value);
-                                        }}
-                                    />
-                                    <label>Start Day</label>
-                                    <input
-                                        type="date"
-                                        placeholder={value.ngaybatdau}
-                                        onChange={(e) => {
-                                            setStartDay(e.target.value);
-                                        }}
-                                    />
-                                    <label>End Date</label>
-                                    <input
-                                        type="date"
-                                        placeholder={value.ngaydukien}
-                                        onChange={(e) => {
-                                            setEndDate(e.target.value);
-                                        }}
-                                    />
-
-                                    <label>Member</label>
-                                    <input
-                                        type="text"
-                                        placeholder={value.thanhvien}
-                                        onChange={(e) => {
-                                            setMember(e.target.value);
-                                        }}
-                                    />
-                                </div>
-                                <div className={cx('footer-modal')}>
-                                    <Button title="Edit" primary onClick={handleEdit} />
-                                    <Button title="Close" outline onClick={close} />
-                                </div>
-                            </div>
-                        );
-                    } else {
-                        return null;
-                    }
-                })
-            )}
         </>
     );
 }

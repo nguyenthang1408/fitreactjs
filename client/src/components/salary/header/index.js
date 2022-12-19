@@ -9,7 +9,7 @@ import ModalAdd from '../../modalAdd';
 
 const cx = classNames.bind(styles);
 
-function Header({ salary }) {
+function Header({ salary,setChangeSalary }) {
     const [show, setShow] = useState(false);
 
     const { t } = useTranslation(['Home']);
@@ -39,7 +39,7 @@ function Header({ salary }) {
                 </div>
             </div>
 
-            {show && <ModalAdd setShow={setShow} />}
+            {show && <ModalAdd setShow={setShow} setChangeSalary={setChangeSalary} />}
         </>
     );
 }

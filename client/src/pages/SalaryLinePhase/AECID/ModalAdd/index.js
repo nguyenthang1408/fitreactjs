@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './ModalAdd.module.scss';
 import Button from '../../../../components/button';
 import Axios from 'axios';
+import { useStore } from '../../../../store';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,13 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
     const [card, setCard] = useState([]);
 
     const [userName, setUserName] = useState('');
+    
+    const [state] = useStore();
+
+    const {idP} = state;
+
+    const idPP = parseInt(idP);
+    
 
     const handleAdd = () => {
         if (endDate > startDay) {
@@ -27,6 +35,8 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
                 startDay: startDay,
                 endDate: endDate,
                 member: userName,
+                idCard: idCard,
+                idP: idPP,
             }).then((res) => {
                 if (res) {
                     setListAdd(res.config.data);
@@ -45,6 +55,7 @@ export default function AddModal({ setShow, setListAdd, idCover, type, setShowEd
             startDay: startDay,
             endDate: endDate,
             member: userName,
+            idCard: idCard,
         }).then((res) => {
             if (res) {
                 setListEdit(res.config.data);

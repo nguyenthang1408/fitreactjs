@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-export default function ModalAdd({ setShow }) {
+export default function ModalAdd({ setShow, parent_Id, setChangeAdd }) {
     const [nameMachine, setNameMachine] = useState('');
 
     const [startDay, setStartDay] = useState('');
@@ -33,8 +33,10 @@ export default function ModalAdd({ setShow }) {
             salary: salary,
             idCard: idCard,
             type: 'line',
+            parent_Id: parent_Id,
         }).then((res) => {
             setShow(false);
+            setChangeAdd(res)
         });
     };
 
@@ -105,7 +107,6 @@ export default function ModalAdd({ setShow }) {
                             setSalary(e.target.value);
                         }}
                     >
-                        <option disabled>Select</option>
                         <option value="AEC">AEC</option>
                         <option value="TSC">TSC</option>
                         <option value="APS">APS</option>

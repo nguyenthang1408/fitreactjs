@@ -52,71 +52,42 @@
             font-size: 25px;
         }
 
-        & label {
-            font-size: 30px;
-        }
-
-        & input + label {
-            margin-top: 10px;
-        }
-
-        & input + input {
-            margin-top: 20px;
-        }
-    }
-
-    & .footer-modal {
-        height: 20%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-.wrapper-edit {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: white;
-    height: 600px;
-    width: 600px;
-    z-index: 1000;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-
-    & .Header-modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 20%;
-        width: 100%;
-
-        & span {
-            font-size: 45px;
-            font-weight: 700;
-        }
-    }
-
-    & .body-modal {
-        height: 60%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-
-        & input {
+        & .input-id-card{
+            position: relative;
+            height: 50px;
             width: 80%;
-            height: 80px;
             border-radius: 10px;
-            border: 1px solid #00ff00;
             text-align: center;
-            font-size: 25px;
+            font-size: 20px;
+
+            & input{
+                width: 100%;
+                height: 50px;
+            }
+
+            .wrapper-id-card{
+                position: absolute;
+                width: 100%;
+                background-color: white;
+                border: 1px solid #333;
+                overflow-y: scroll;
+                border-radius: 10px 0px 0px 10px;
+
+                .content-card{
+                    display: flex;
+                    flex-direction: column;
+
+                    span{
+                        width: 100%;
+                        cursor: pointer;
+
+                        &:hover{
+                            background-color: aquamarine;
+                        }
+                    }
+
+                }
+            }
         }
 
         & label {
@@ -140,6 +111,8 @@
         align-items: center;
     }
 }
+
+
 
 @media (max-width: 768px)
 {
@@ -151,11 +124,21 @@
             {
                 width: 60%;
             }
+            & .input-id-card{
+
+    
+                & input{
+                   width: 75%;
+                   height: 40px;
+                }
+    
+
+            }
         }
     }
     .wrapper-edit
     {
-        margin-top: 180px;
+        margin-top: 120px;
         width: 100%;
 
         & .body-modal 
@@ -163,6 +146,16 @@
             & input 
             {
                 width: 60%;
+            }
+            & .input-id-card{
+
+    
+                & input{
+                   width: 75%;
+                   height: 40px;
+                }
+    
+
             }
         }
     }

@@ -29,6 +29,7 @@ export default function AECID() {
 
     const idCover = parseInt(window.atob(id));
 
+
     useEffect(() => {
         Axios.get('/line/phase').then((res) => {
             SetListPhase(res.data);
@@ -38,6 +39,7 @@ export default function AECID() {
     const handleAddMachine = () => {
         setShow(true);
     };
+
 
     return (
         <>

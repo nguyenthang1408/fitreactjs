@@ -1,7 +1,8 @@
-import { SET_USER } from './Contants';
+import { SET_USER,SET_ID } from './Contants';
 
 const initState = {
     user: '',
+    idP: 0,
 };
 
 function reducer(state, actions) {
@@ -11,6 +12,11 @@ function reducer(state, actions) {
                 ...state,
                 user: actions.payload,
             };
+        case SET_ID:
+            return {
+                ...state,
+                idP:actions.id,
+            }
         default:
             throw new Error('Invalid action!');
     }
