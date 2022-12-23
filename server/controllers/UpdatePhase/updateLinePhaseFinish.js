@@ -1,0 +1,111 @@
+const db = require("../../model/index.js");
+
+const updateLinePhaseFinish = (req, res) => {
+  const finish = req.body.finish;
+  const id = req.body.id;
+  const progress = 100;
+  const idCover = req.body.idCover;
+
+
+  db.query(
+    "SELECT ngaybatdau FROM congdoan1 WHERE id = ?",
+    [id],
+    (err, value) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (value.length > 0) {
+          const date1 = new Date(value[0].ngaybatdau);
+          const date2 = new Date(finish);
+          const diff = Math.abs(date2.getTime() - date1.getTime());
+          const Difference_In_Days = diff / (1000 * 3600);
+
+          db.query(
+            "SELECT tonggio FROM congdoan1 WHERE id = ?",
+            [id],
+            (err, value) => {
+              if (err) {
+                console.log(err);
+              } else {
+                if (value.length > 0) {
+                  const efficiency = Math.round(
+                    (value[0].tonggio / Difference_In_Days) * 100
+                  );
+                  db.query(
+                    "UPDATE congdoan1 SET ngayhoanthanh = ?, tiendo = ?, thucte = ?, hieusuat = ? WHERE id = ?",
+                    [finish, progress, Difference_In_Days, efficiency, id],
+                    (err, result) => {
+                      if (err) {
+                        console.log(err);
+                      } else {
+                        res.send(result);
+
+                        db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count, parent_id_id FROM `congdoan1` WHERE parent_id = ?",
+                        [idCover],
+                        (err,result) => 
+                        {
+                          if(err)
+                          {
+                            console.log(err);
+                          }
+                          else
+                          {
+                            const sum = result[0].sum / result[0].count;
+                            const parentIDID = result[0].parent_id_id;
+
+                            db.query("UPDATE tiendomaymoc1 SET tiendo = ? WHERE id = ?",
+                            [sum, idCover],
+                            (err, result) => {
+                              if(err)
+                              {
+                                console.log(err);
+                              }
+                              else
+                              {
+                                 db.query("SELECT SUM(tiendo) as sum, COUNT(tiendo) as count FROM `tiendomaymoc1` WHERE parent_id = ?",
+                                 [parentIDID],
+                                 (err, result) => {
+                                  if(err)
+                                  {
+                                    console.log(err);
+                                  }
+                                  else
+                                  {
+                                    const sumProgress = result[0].sum / result[0].count;
+
+                                    db.query("UPDATE tiendomaymoc SET tiendo = ? WHERE id = ?",
+                                    [sumProgress, parentIDID],
+                                    (err,result) => {
+                                      if(err)
+                                      {
+                                        console.log(err);
+                                      }
+                                      else
+                                      {
+
+                                      }
+                                    }
+                                    )
+                                  }
+                                 }
+                                 )
+                              }
+                            }
+                            )
+                          }
+                        }
+                        )
+                      }
+                    }
+                  );
+                }
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+module.exports = updateLinePhaseFinish;

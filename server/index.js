@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const post = require("./routers/post.js");
+const update = require("./routers/update.js");
+const deleteData = require("./routers/DeleteData.js");
+const getData = require("./routers/getData.js");
 
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
@@ -36,6 +39,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
 
 app.use("/", post);
+app.use("/", update);
+app.use("/", deleteData);
+app.use("/", getData);
 
 const POST = 4000;
 

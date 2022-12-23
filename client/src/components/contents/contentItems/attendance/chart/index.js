@@ -37,7 +37,7 @@ function Chart({ title, AddClass }) {
     if((Math.round(day)) !== 1)
     {
         today.setDate(today.getDate() - (dayWeek - 1));
-        var subDay = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        var subDay = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
     
         var subCurrentDayOfWeek = 7 - dayWeek;
     
@@ -46,7 +46,7 @@ function Chart({ title, AddClass }) {
     }
     else
     {
-        subDay = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        subDay = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
         today2.setDate(today2.getDate() + (dayWeek - 1));
         // var plusDay = today2.getDate()+'-'+(today2.getMonth()+1)+'-'+today2.getFullYear();
     }
@@ -183,7 +183,6 @@ function Chart({ title, AddClass }) {
       }
 
 
-    
       const dataWeek = [
         {
             date: `Mon`,
