@@ -237,8 +237,6 @@ function Chart({ title, AddClass }) {
      },[])
 
 
-     console.log('sdf')
-
     return <>
         {
             !AddClass ? 
