@@ -22,6 +22,7 @@ function Contents() {
         })
     },[])
 
+
     return (
         <div className={cx('container-content')}>
             <div className={cx('container-progress')}>

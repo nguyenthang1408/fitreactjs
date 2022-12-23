@@ -42,7 +42,6 @@ function ContentItems({ title, show, percent, hide, size, salary, AddClass }) {
        })
     },[]);
 
-
     return (
         <div className={cx('title-title', AddClass)}>
             <div className={cx('title-header', { show })}>

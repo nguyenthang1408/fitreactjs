@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo, useMemo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './chart.module.scss';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -15,13 +15,16 @@ function Chart({ title, AddClass }) {
     var today2 = new Date();
     const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 
-    const currentDate = new Date();
-    const startDate = new Date(currentDate.getFullYear(), 0, 1);
-    var days = Math.floor((currentDate - startDate) /
-        (24 * 60 * 60 * 1000));
+    const weekNumber = useMemo(() => {
+        const currentDate = new Date();
+        const startDate = new Date(currentDate.getFullYear(), 0, 1);
+        var days = Math.floor((currentDate - startDate) /
+            (24 * 60 * 60 * 1000));
           
-    const weekNumber = Math.ceil(days / 7);
+    const weekNumber1 = Math.ceil(days / 7);
 
+    return weekNumber1
+    },[])
 
     function dayofweek(d, m, y)
     {
@@ -50,7 +53,7 @@ function Chart({ title, AddClass }) {
         today2.setDate(today2.getDate() + (dayWeek - 1));
         // var plusDay = today2.getDate()+'-'+(today2.getMonth()+1)+'-'+today2.getFullYear();
     }
-   
+
 
     const [quantityUser, setQuantityUser] = useState(0);
 
@@ -234,7 +237,7 @@ function Chart({ title, AddClass }) {
      },[])
 
 
-     
+     console.log('sdf')
 
     return <>
         {
@@ -319,5 +322,5 @@ function Chart({ title, AddClass }) {
     </>
 }
 
-export default Chart;
+export default memo(Chart);
     

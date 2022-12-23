@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 
@@ -50,4 +50,4 @@ function Button({
     );
 }
 
-export default Button;
+export default memo(Button);
