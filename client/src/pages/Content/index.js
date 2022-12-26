@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Content from '../../components/contents';
 import Contentitems from '../../components/contents/contentItems/header';
 import classNames from 'classnames/bind';
@@ -6,29 +6,33 @@ import styles from './Content.module.scss';
 import Attendance from '../../components/contents/contentItems/attendance';
 import Chart from '../../components/contents/contentItems/attendance/chart';
 import { useTranslation } from 'react-i18next';
-import Axios from 'axios';
+// import { useFetch } from '../../CustomHook/fetchReducer';
+import { useFetch1 } from '../../CustomHook/fetch';
 
 const cx = classNames.bind(styles);
 
 function Contents() {
+
+    const {data: user, isLoading, error} = useFetch1("/getSumSalary");
+
+
     const { t } = useTranslation(['Home']);
 
-    const [sumSalary, setSumSalary] = useState([]);
+    
+    if (error) {
+        return 'Something wrong!!!';
+    };
 
-    useEffect(() => {
-        Axios.get("/getSumSalary")
-        .then((value) => {
-            setSumSalary(value.data);
-        })
-    },[])
 
 
     return (
-        <div className={cx('container-content')}>
+        isLoading ? (<p>isLoading</p>) :
+        (
+            <div className={cx('container-content')}>
             <div className={cx('container-progress')}>
                 <Content>
                     <Contentitems title={t('project')} show="show" percent="33" hide={true} size="lg" salary="" AddClass="sizeL"  />
-                    {sumSalary.map((value, key) => {
+                    {user.map((value, key) => {
                         return (
                             <Contentitems key={key} title={value.bophan} show="" percent={((value.sum)/(value.count)).toFixed(1)} hide={false} size="xs" salary={value.bophan} AddClass="left" />
                         )
@@ -42,6 +46,7 @@ function Contents() {
                 </Attendance>
             </div>
         </div>
+        )
     );
 }
 
