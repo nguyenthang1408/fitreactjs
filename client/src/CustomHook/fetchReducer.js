@@ -33,12 +33,12 @@ export const useFetch = (url) => {
             });
             try {
                 const {data} = await Axios.get(url);
-        
+
                 dispatch({
                     type: 'fetchAPI/success',
                     isLoading: false,
                     error: null,
-                    data: data.data,
+                    data,
                 });
             } catch (err) {
                 dispatch({
@@ -50,6 +50,6 @@ export const useFetch = (url) => {
             }
            })();
     },[url])
-
+console.log(state)
     return { ...state };
 }

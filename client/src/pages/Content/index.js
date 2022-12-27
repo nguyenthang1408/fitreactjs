@@ -6,14 +6,13 @@ import styles from './Content.module.scss';
 import Attendance from '../../components/contents/contentItems/attendance';
 import Chart from '../../components/contents/contentItems/attendance/chart';
 import { useTranslation } from 'react-i18next';
-// import { useFetch } from '../../CustomHook/fetchReducer';
-import { useFetch1 } from '../../CustomHook/fetch';
+import { useFetch } from '../../CustomHook/fetchReducer';
 
 const cx = classNames.bind(styles);
 
 function Contents() {
 
-    const {data: user, isLoading, error} = useFetch1("/getSumSalary");
+    const {data: user, isLoading, error} = useFetch("/getSumSalary");
 
 
     const { t } = useTranslation(['Home']);
@@ -24,9 +23,13 @@ function Contents() {
     };
 
 
-
     return (
-        isLoading ? (<p>isLoading</p>) :
+        isLoading 
+        ?
+        (<div className={cx('container-loading')}>
+            <p>Loading...</p>
+        </div>) 
+        :
         (
             <div className={cx('container-content')}>
             <div className={cx('container-progress')}>
