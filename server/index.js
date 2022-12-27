@@ -10,6 +10,7 @@ const getData = require("./routers/getData.js");
 
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+require('dotenv').config()
 
 app.use(
   cors({
@@ -43,8 +44,9 @@ app.use("/", update);
 app.use("/", deleteData);
 app.use("/", getData);
 
-const POST = 4000;
+const POST = process.env.POST;
 
-app.listen(4000, () => {
+
+app.listen(POST, () => {
   console.log(`your server is running ${POST}`);
 });

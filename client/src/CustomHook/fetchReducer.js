@@ -50,6 +50,6 @@ export const useFetch = (url) => {
             }
            })();
     },[url])
-console.log(state)
+
     return { ...state };
 }
