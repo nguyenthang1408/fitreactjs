@@ -10,6 +10,8 @@ const cx = classNames.bind(styles);
 
 function Chart({ title, AddClass }) {
 
+    
+
     var today = new Date();
     var today1 = new Date();
     var today2 = new Date();
@@ -268,7 +270,8 @@ function Chart({ title, AddClass }) {
                             height={1}
                             scale="band"
                         />
-                        <YAxis />
+ 
+                        <YAxis type="number" domain={[0, 10]}/>
                         <Tooltip />
                         <Legend />
                         <Bar dataKey="Working" fill="#8884d8" />
@@ -306,7 +309,7 @@ function Chart({ title, AddClass }) {
                         height={1}
                         scale="band"
                     />
-                    <YAxis />
+                    <YAxis type="number" domain={[0, 10]}/>
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="Working" fill="#8884d8" />
