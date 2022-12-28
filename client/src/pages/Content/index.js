@@ -14,7 +14,6 @@ function Contents() {
 
     const {data: user, isLoading, error} = useFetch("/getSumSalary");
 
-
     const { t } = useTranslation(['Home']);
 
     
@@ -27,6 +26,7 @@ function Contents() {
         isLoading 
         ?
         (<div className={cx('container-loading')}>
+            <div className={cx('loader')}></div>
             <p>Loading...</p>
         </div>) 
         :
