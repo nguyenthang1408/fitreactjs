@@ -19,7 +19,7 @@ function Contents() {
 
     
     if (error) {
-        return 'Something wrong!!!';
+        return (<div className={cx('container-loading')}><p>ERROR {error}!!!</p></div>);
     };
 
 
